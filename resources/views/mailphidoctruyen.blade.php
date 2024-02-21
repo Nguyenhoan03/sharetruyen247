@@ -43,8 +43,8 @@
         
        
         
-        <p>phí đọc truyện: <span class="highlight">{{$dataphidoctruyen['phidoc']}}</span> linh thạch</p>
-        <p>Thực Nhận: <span class="highlight">{{$dataphidoctruyen['phidoc']*0.7}}</span> linh thạch</p>
+        <p>phí đọc truyện: <span class="highlight">{{$dataphidoctruyen['phidoc']}}</span> linh thạch .</p>
+        <p>Thực Nhận: <span class="highlight">{{$dataphidoctruyen['phidoc']*0.7}}</span> linh thạch .</p>
  
     </div>
 </body>
