@@ -46,6 +46,7 @@ Route::group(['prefix' => 'pageadmin'],function(){
     Route::get('/duyettruyenuser','App\Http\Controllers\admincontroller@duyettruyenuser');
     Route::post('/update-trang-thai', 'App\Http\Controllers\admincontroller@updateTrangThai');
     Route::get('/xem-chapter/{title}', 'App\Http\Controllers\admincontroller@xemchapter');
+    Route::get('/thong-ke-doanh-thu-admin', 'App\Http\Controllers\admincontroller@thongkedoanhthuadmin');
 
 });
 

@@ -173,7 +173,9 @@ class admincontroller extends Controller
 
         return view('hoanadmin.xemchapter',compact('data'));
     }
-    
+    public function thongkedoanhthuadmin(){
+        return view('hoanadmin.thongkedoanhthuadmin');
+    }
     
     
     

@@ -65,7 +65,7 @@
 
     </li>
     <li>
-        <a class="app-menu__item" href="/story_user/views">
+        <a class="app-menu__item" href="/pageadmin/thong-ke-doanh-thu-admin">
             <i class="app-menu__icon bx bx-user-voice"></i>
             <span class="app-menu__label">Thống kê doanh thu</span>
         </a>
