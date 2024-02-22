@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Session;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\basecategoryInterface;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class homecontroller extends Controller
 {
@@ -206,12 +208,20 @@ class homecontroller extends Controller
         $hashedPassword = bcrypt($request->password);
 
         // Nếu mọi kiểm tra đều ổn, tiến hành chèn dữ liệu vào bảng users
-        DB::table('users')->insert([
+        $userId = DB::table('users')->insertGetId([
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => $hashedPassword,
         ]);
+    
+        // Gán quyền cho người dùng mới
+        DB::table('model_has_roles')->insert([
+            'role_id' => 1, // ID của vai trò 'user'
+            'model_type' => 'App\Models\User',
+            'model_id' => $userId,
+        ]);
+
     
         // Hiển thị thông báo thành công và chuyển hướng đến trang đăng nhập
         Session::flash('success', 'Tạo tài khoản thành công. Bạn có thể đăng nhập bây giờ');

@@ -1,3 +1,49 @@
+<style>
+    .navbaradmincha,
+.navbaradmincha2 {
+    position: relative;
+}
+
+.navbaradminqlnd,
+.navbaradminqlnd2 {
+    margin-top: -10px;
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    padding: 10px 0;
+    border-radius: 4px;
+    overflow-y: auto;
+    max-height:500px;
+}
+
+.navbaradmincha:hover .navbaradminqlnd,
+.navbaradmincha2:hover .navbaradminqlnd2 {
+    display: block;
+}
+
+.navbaradminqlnd li,
+.navbaradminqlnd2 li {
+    list-style: none;
+    padding: 8px 16px;
+}
+
+.navbaradminqlnd li a,
+.navbaradminqlnd2 li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.navbaradminqlnd li a:hover,
+.navbaradminqlnd2 li a:hover {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+</style>
+
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
   <aside class="app-sidebar">
     <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://img.dtruyen.com/limitless/images/demo/users/face1.jpg" width="50px"
@@ -23,7 +69,7 @@
             <span class="app-menu__label">Quản lý người dùng <i class="fa-solid fa-caret-down"></i></span>
         </a>
         <ul class="navbaradminqlnd">
-            <li><a href="/pageadmin/thong_tin_user"><i class="fa-regular fa-circle-dot"></i> Thông tin user(thanh toán linh thạch cho users) </a></li>
+            <li><a href="/pageadmin/thong_tin_user"><i class="fa-regular fa-circle-dot"></i> Thông tin user (thanh toán linh thạch cho users) </a></li>
            
             <li><a href="/pageadmin/lich_su_nap_linh_thach_user"><i class="fa-regular fa-circle-dot"></i> Lịch sử nạp linh thạch user</a></li>
             <li><a href="/pageadmin/duyettruyenuser"><i class="fa-regular fa-circle-dot"></i> Duyệt truyện user đã đăng</a></li>
@@ -34,11 +80,8 @@
             <i class="app-menu__icon bx bx-id-card"></i>
             <span class="app-menu__label">Cào truyện</span>
         </a>
-
-
-
         <ul class="navbaradminqlnd2">
-            <li><a href="/crawler/tien-hiep">cào truyện tiên hiệp</a></li>
+        <li><a href="/crawler/tien-hiep">cào truyện tiên hiệp</a></li>
             <li><a href="/crawler/quan-truong">cào truyện quan trường</a></li>
             <li><a href="/crawler/huyen-huyen">cào truyện huyền huyễn</a></li>
             <li><a href="/crawler/kiem-hiep">cào truyện kiếm hiệp</a></li>
@@ -58,11 +101,8 @@
             <li><a href="/crawler/tieu-thuyet">cào truyện tiểu thuyết</a></li>
             <li><a href="/crawler/quan-su">cào truyện quân sự</a></li>
             <li><a href="/crawler/trinh-tham">cào truyện trinh thám</a></li>
-            
-
+            <!-- Thêm các mục còn lại tương tự -->
         </ul>
-
-
     </li>
     <li>
         <a class="app-menu__item" href="/pageadmin/thong-ke-doanh-thu-admin">
@@ -71,6 +111,7 @@
         </a>
     </li>
 </ul>
+
 
 @endrole
 </aside>

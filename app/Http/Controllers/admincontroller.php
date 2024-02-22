@@ -91,7 +91,7 @@ class admincontroller extends Controller
     }
 
     public function thong_tin_user(){
-        $data = DB::table('users')->get();
+        $data = DB::table('users')->orderBy('id','DESC')->paginate(20);
        return view('hoanadmin.ttuser',compact('data'));
     }
     public function lich_su_nap_linh_thach_user(){
@@ -174,7 +174,9 @@ class admincontroller extends Controller
         return view('hoanadmin.xemchapter',compact('data'));
     }
     public function thongkedoanhthuadmin(){
-        return view('hoanadmin.thongkedoanhthuadmin');
+        $data = DB::table('users')
+        ->where('id',6)->first();
+        return view('hoanadmin.thongkedoanhthuadmin',compact('data'));
     }
     
     

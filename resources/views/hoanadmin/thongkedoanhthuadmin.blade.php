@@ -73,33 +73,13 @@
 <div class="" style="margin-top: 15px; background-color: #EEEDED; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);">
    <div class="" style="display:flex;margin-top:15px">
       <div class="" style="width:30%;background-color:white;text-align:center;justify-content:center">
-        <p style="padding-top:10px">Tổng lượt xem</p>
-        <p style="font-size:20px;font-weight:500">{totalViews}}</p>
+        <p style="padding-top:10px">Tổng linh thạch kiếm được</p>
+        <p style="font-size:20px;font-weight:500">{{$data->linh_thach}}</p>
       </div>
 
-      <div class="" style="width:30%;margin-left:20px;background-color:white;text-align:center;justify-content:center">
-        <p style="padding-top:10px">Tổng chương truyện</p>
-        <p style="font-size:20px;font-weight:500">{totalChapters}}</p>
-      </div>
-    
+     
    </div>
-   <div class="thongkestoryus" style=" background-color: white;margin-top:22px">
-       <table border=1>
-        <tr>
-          <td style="font-sze:19px;font-weight:500">Truyện</td>
-          <td style="font-sze:19px;font-weight:500">Lượt xem </td>
-          <td style="font-sze:19px;font-weight:500">Cập nhật ngày</td>
-        </tr>
-     data as $dt)
-        <tr>
-          <td>{dt->title}}</td>
-          <td>{dt->viewers}}</td>
-          <td>31/01/2024</td>
-        </tr>
-    
-       </table>
-   </div>
-      
+ 
     </div>
   
 </div>

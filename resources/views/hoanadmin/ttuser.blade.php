@@ -99,7 +99,9 @@
 </table>
 
 </div>
-
+<div class="d-flex justify-content-center">
+                                        {{ $data->onEachSide(2)->links('pagination::bootstrap-4') }}
+                                    </div>
     </div>
    
   </main>
