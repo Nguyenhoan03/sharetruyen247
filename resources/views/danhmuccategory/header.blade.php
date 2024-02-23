@@ -20,6 +20,8 @@
 
     <link rel="shortcut icon" href="https://suustore.com/assets/frontend/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('/assets/app.css')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 <style>
     .payment-container {
     padding: 20px;
@@ -60,7 +62,7 @@
         <!-- place navbar here -->
         <nav class="navbar navbar-expand-lg navbar-dark header__navbar p-md-0">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="/">
                     <img src="{{asset('/assets/images/logo_text.png')}}" alt="Logo Suu Truyen" srcset="" class="img-fluid"
                         style="width: 200px;">
                 </a>
@@ -121,9 +123,9 @@
 
         @endif
         
-        <li class="nav-item dropdown">
-                            <a href="#" onclick="openPurchaseForm()" class="nav-link ">
-                             Mua linh thạch 
+        <li class="nav-item">
+                            <a href="#" id="nap-linh-thach" onclick="openPurchaseForm()" class="nav-link ">
+                            Mua linh thạch
                             </a>
     </li>
        
@@ -194,6 +196,8 @@
                 tục.</p>
         </div>
     </div>
+
+   
 
 
     <main>

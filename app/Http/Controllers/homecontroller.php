@@ -52,7 +52,7 @@ class homecontroller extends Controller
     })
     ->select('product.title', 'detail_product.theloai', 'detail_product.trangthai', 'chapter.chapter') // Add the chapter_number or any other column you need
     ->orderBy('product.id', 'DESC')
-    ->paginate(30);
+    ->paginate(28);
     
 
 

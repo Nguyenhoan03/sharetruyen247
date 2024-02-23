@@ -13,7 +13,7 @@ class trinhtham extends Controller
 {
     public function scrapeMainPage()
     {
-        $url = 'https://dtruyen.com/trinh-tham/';
+        $url = 'https://dtruyen.com/truyen-trinh-tham/';
         $crawler = Goutte::request('GET', $url);
     
         $image = $crawler->filter('.list-stories li.story-list a img')->each(function ($node) {

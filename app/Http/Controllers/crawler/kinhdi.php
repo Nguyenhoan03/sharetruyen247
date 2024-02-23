@@ -13,7 +13,7 @@ class kinhdi extends Controller
 {
     public function scrapeMainPage()
     {
-        $url = 'https://dtruyen.com/kinh-di/';
+        $url = 'https://dtruyen.com/linh-di/';
         $crawler = Goutte::request('GET', $url);
     
         $image = $crawler->filter('.list-stories li.story-list a img')->each(function ($node) {
