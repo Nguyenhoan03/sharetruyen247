@@ -97,24 +97,10 @@
                 </div>
                 <div class="row">
                <div class="overviewtienhiep">
-               <p>Truyện tiên hiệp thường kể về quá trình tu luyện và khám phá thế giới tu sĩ thần tiên đầy bí ẩn của nhân vật chính. Trong truyện tiên hiệp thường chia ra những cấp bậc tu luyện trước khi thành tiên như sau:</p>  
+               <p>Thể loại truyện teen hay mới nhất hiện nay đã full được chọn lọc từ những truyện tình yêu tuổi học trò dễ thương và hồn nhiên trong sáng.</p>  
                 
            
-            <ul style=" padding: 0; margin-left: 15px;">
-                <li style="margin-top: 0;"> 
-                    <p>Luyện Khí</p>
-                </li>
-                <li style="margin-top: 0;"> 
-                    <p>Trúc Cơ</p>
-                </li>
-        
-                <li style="margin-top: 0;"> 
-                    <p>Khai Quang</p>
-                </li>
-            </ul>
-        <p>
-        Ngoài ra còn có những cấp độ ngoài tiên như Bán Thánh, Vô Cực Thánh Nhân,.. dựa theo trí tưởng tượng của tác giả.
-        </p>
+          
                         </div>
                     </div>
                 </div>

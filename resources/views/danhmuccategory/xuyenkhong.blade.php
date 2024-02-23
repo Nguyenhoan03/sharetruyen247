@@ -97,24 +97,11 @@
                 </div>
                 <div class="row">
                <div class="overviewtienhiep">
-               <p>Truyện tiên hiệp thường kể về quá trình tu luyện và khám phá thế giới tu sĩ thần tiên đầy bí ẩn của nhân vật chính. Trong truyện tiên hiệp thường chia ra những cấp bậc tu luyện trước khi thành tiên như sau:</p>  
-                
-           
-            <ul style=" padding: 0; margin-left: 15px;">
-                <li style="margin-top: 0;"> 
-                    <p>Luyện Khí</p>
-                </li>
-                <li style="margin-top: 0;"> 
-                    <p>Trúc Cơ</p>
-                </li>
-        
-                <li style="margin-top: 0;"> 
-                    <p>Khai Quang</p>
-                </li>
-            </ul>
-        <p>
-        Ngoài ra còn có những cấp độ ngoài tiên như Bán Thánh, Vô Cực Thánh Nhân,.. dựa theo trí tưởng tượng của tác giả.
-        </p>
+              <p>Xuyên không là thể loại tiểu thuyết mà trong đó các nhân vật chính vì một lý do nào đó đã đi đến một khoảng thời gian , không gian , một thời đại khác so với thời đại mà họ đang sinh sống. Có 2 thể loại xuyên không: 
+Loại 1 : Khi xuyên qua chỉ có linh hồn xuyên đến 1 thời đại khác. 
+Loại 2 : Cả thể xác và linh hồn đều xuyên qua đến 1 thời đại khác. 
+ Nơi xảy ra ? Có thể là hiện đại xuyên về cổ đại , từ cổ đại xuyên về hiện đại ,… 
+Nhân vật chính sau khi xuyên qua thành: + Thành nữ vương , hoàng hậu , công chúa , tiểu thư ,…. ( nói chung là tầng lớp quý tộc ) + Thành nô tỳ , nữ bộc , ngốc tử , vô diệm ,….. + Xuyên qua thành người bình thường không có gì nổi bật.</p>
                         </div>
                     </div>
                 </div>

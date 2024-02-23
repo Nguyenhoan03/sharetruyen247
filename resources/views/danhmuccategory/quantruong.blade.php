@@ -97,10 +97,10 @@
                 </div>
                 <div class="row">
                <div class="overviewtienhiep">
-               <p>Truyện tiên hiệp thường kể về quá trình tu luyện và khám phá thế giới tu sĩ thần tiên đầy bí ẩn của nhân vật chính. Trong truyện tiên hiệp thường chia ra những cấp bậc tu luyện trước khi thành tiên như sau:</p>  
+               <p>Danh sách truyện quan trường là tuyển tập truyện kể về sự tranh đấu và thăng tiến của nhân vật chính trong trốn quan trường ở trung quốc với một vài nhân vật có sở hữu dị năng.</p>  
                 
            
-            <ul style=" padding: 0; margin-left: 15px;">
+            <!-- <ul style=" padding: 0; margin-left: 15px;">
                 <li style="margin-top: 0;"> 
                     <p>Luyện Khí</p>
                 </li>
@@ -114,7 +114,7 @@
             </ul>
         <p>
         Ngoài ra còn có những cấp độ ngoài tiên như Bán Thánh, Vô Cực Thánh Nhân,.. dựa theo trí tưởng tượng của tác giả.
-        </p>
+        </p> -->
                         </div>
                     </div>
                 </div>

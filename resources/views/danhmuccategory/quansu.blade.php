@@ -97,24 +97,8 @@
                 </div>
                 <div class="row">
                <div class="overviewtienhiep">
-               <p>Truyện tiên hiệp thường kể về quá trình tu luyện và khám phá thế giới tu sĩ thần tiên đầy bí ẩn của nhân vật chính. Trong truyện tiên hiệp thường chia ra những cấp bậc tu luyện trước khi thành tiên như sau:</p>  
-                
-           
-            <ul style=" padding: 0; margin-left: 15px;">
-                <li style="margin-top: 0;"> 
-                    <p>Luyện Khí</p>
-                </li>
-                <li style="margin-top: 0;"> 
-                    <p>Trúc Cơ</p>
-                </li>
-        
-                <li style="margin-top: 0;"> 
-                    <p>Khai Quang</p>
-                </li>
-            </ul>
-        <p>
-        Ngoài ra còn có những cấp độ ngoài tiên như Bán Thánh, Vô Cực Thánh Nhân,.. dựa theo trí tưởng tượng của tác giả.
-        </p>
+           <p>Thể loại truyện quân sự kể về những cuộc chiến tranh lịch sử và những người tài sử dụng quân cũng như chiến thuật trọng các cuộc đấu tranh dành quyền.
+</p>
                         </div>
                     </div>
                 </div>
