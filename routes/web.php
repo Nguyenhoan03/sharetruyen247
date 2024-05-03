@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ChatController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,6 +66,7 @@ Route::get('/truyen-kiem-hiep-full','App\Http\Controllers\danhmuccategorycontrol
 Route::get('/truyen-kiem-hiep-hot','App\Http\Controllers\danhmuccategorycontroller@truyenkiemhiephot');
 
 Route::group(['prefix' => 'story_user', 'middleware' => 'checklogin'], function () {
+  
     Route::get('/', 'App\Http\Controllers\StoryUserController@index');
     Route::get('/createstory', 'App\Http\Controllers\StoryUserController@createstory');
     Route::post('/postcreatestory', 'App\Http\Controllers\StoryUserController@postcreatestory');
@@ -86,9 +87,12 @@ Route::group(['prefix' => 'story_user', 'middleware' => 'checklogin'], function 
     Route::get('/thu-phi-user/{title}', 'App\Http\Controllers\StoryUserController@thuphiuser');
     Route::post('/post-thu-phi-user', 'App\Http\Controllers\StoryUserController@postthuphiuser');
     Route::post('/traphichapter', 'App\Http\Controllers\StoryUserController@traphichapter');
- 
+   
 });
-
+Route::group([ 'middleware' => 'checklogin'], function (){
+    Route::get('/roomchat', [ChatController::class, 'index']);
+    Route::post('/send', [ChatController::class, 'send']);
+});
 
 
 

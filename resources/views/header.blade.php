@@ -105,7 +105,7 @@
                 Xin chào, {{ Auth::user()->name }}
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+                <li><a class="dropdown-item" href="/roomchat">phòng chat</a></li>
               
                 <li><a class="dropdown-item" href="/author/logout">Đăng xuất</a></li>
             </ul>
