@@ -14,24 +14,24 @@
           <span class="app-menu__label">POS Bán Hàng</span></a></li> -->
       <li><a class="app-menu__item active" href="/story_user"><i class='app-menu__icon bx bx-tachometer'></i><span
             class="app-menu__label">Thống kê tổng quan</span></a></li>
-      <li><a href="/story_user/danhsachstory" class="app-menu__item " href="table-data-table.html"><i class='app-menu__icon bx bx-id-card'></i> <span
+      <li><a href="/story_user/danhsachstory" class="app-menu__item "><i class='app-menu__icon bx bx-id-card'></i> <span
             class="app-menu__label">Danh sách truyện</span></a></li>
       <li><a class="app-menu__item" href="/story_user/views"><i class='app-menu__icon bx bx-user-voice'></i><span
             class="app-menu__label">Thống kê lượt xem</span></a></li>
-      <li><a class="app-menu__item" href="table-data-product.html"><i
+      <li><a class="app-menu__item" href="#"><i
             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Thống kê doanh thu</span></a>
       </li>
       <li><a class="app-menu__item" href="/story_user/billingsetup"><i class='app-menu__icon bx bx-task'></i><span
             class="app-menu__label">Cài đặt thanh toán</span></a></li>
 
-            <li><a class="app-menu__item" href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
+            <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-task'></i><span
             class="app-menu__label">Đổi linh thạch</span></a></li>
 
-            <li><a class="app-menu__item" href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
+            <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-task'></i><span
             class="app-menu__label">Độc giả ủng hộ</span></a></li>
 
-            <li><a class="app-menu__item" href="table-data-oder.html"><i class='app-menu__icon bx bx-task'></i><span
-            class="app-menu__label">Độc giả đọc chương thu phí</span></a></li>
+            <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-task'></i><span
+            class="app-menu__label">Chương thu phí</span></a></li>
      
 
     </ul>
