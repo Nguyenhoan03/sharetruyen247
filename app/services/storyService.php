@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Repositories;
+namespace App\services;
 
 use Illuminate\Support\Facades\DB;
 use SebastianBergmann\Type\VoidType;
-
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 // use Illuminate\Support\Facades\Session;
-class storyRepository
+class storyService
 {
     public function getUserStories($userId)
     {
@@ -100,21 +101,64 @@ class storyRepository
         })
         ->whereNotNull('users_id')
         ->orderBy('product.id', 'DESC')
-        ->get();
+        ->paginate(28);
 
     }
-    public function updateStoryStatus($ids, $trangThaiArray) : void 
+    public function updateStoryStatus($ids, $trangThaiArray): void 
     {
         foreach ($ids as $key => $id) {
             $trangThai = $trangThaiArray[$key];
-            DB::table('product')->where('id', $id)->update(['trang_thai' => $trangThai]);
+            
+            // 1. Cập nhật database
+            DB::table('product')
+                ->where('id', $id)
+                ->update(['trang_thai' => $trangThai]);
+    
+            // 2. Xóa cache liên quan
+            $this->clearRelatedCache($id);
         }
     }
+    private function clearRelatedCache($productId): void
+{
+    $redis = Redis::connection();
+    
+    // Lấy thông tin category của sản phẩm
+    $product = DB::table('product')
+        ->where('id', $productId)
+        ->first();
+    
+    // Xóa cache của các category liên quan
+    $categories = $this->getProductCategories($product);
+    foreach ($categories as $category) {
+        $pattern = "category:{$category}:page:*";
+        $keys = $redis->keys($pattern);
+        foreach ($keys as $key) {
+            $redis->del($key);
+        }
+    }
+}
+private function getProductCategories($product): array
+{
+    $categories = [];
+    $possibleCategories = [
+       'tienhiep', 'ngontinh', 'quantruong', 'khoanguyen', 'huyenhuyen', 'dinang', 'kiemhiep', 'dammy', 'vongdu', 'haihuoc', 'kinhdi', 'dothi', 'lichsu', 'truyenma', 'truyenngan', 'tieuthuyet', 'truyenteen', 'quansu', 'xuyenkhong', 'trinhtham'
+    ];
+    
+    foreach ($possibleCategories as $category) {
+        if ($product->$category == 1) {
+            $categories[] = $category;
+        }
+    }
+    
+    return $categories;
+}
+
 
     public function getChaptersByTitle($title){
         $data = DB::table('chapter')
         ->where('title',$title)
         ->get();
+       
     }
   
     public function deleteStory($id){
@@ -141,39 +185,39 @@ class storyRepository
         $file_name1 = '';
         $descripts = "";
     
-        // Lấy sản phẩm và xử lý lỗi nếu không tìm thấy
+     
         $product = DB::table('product')->where('title', $title)->first();
         if (!$product) {
             return false;
         }
     
-        // Xử lý file upload (nếu có)
+   
         if ($request->hasFile('fileInput')) {
             $file1 = $request->file('fileInput');
             $file_name1 = $file1->getClientOriginalName();
             $file1->move(public_path('upload'), $file_name1);
         } else {
-            // Sử dụng ảnh cũ nếu không có tệp tải lên
+          
             $file_name1 = $product->image;
         }
     
-        // Xử lý các thể loại
+       
         $genres = $request->only([
             'tienhiep', 'ngontinh', 'quantruong', 'khoanguyen', 'huyenhuyen', 'dinang',
             'kiemhiep', 'dammy', 'vongdu', 'haihuoc', 'kinhdi', 'dothi', 'lichsu', 
             'truyenma', 'truyenngan', 'tieuthuyet', 'truyenteen', 'quansu', 'xuyenkhong', 'trinhtham'
         ]);
     
-        // Tạo danh sách thể loại để lưu trong bảng `detail_product`
+     
         $genreKeys = array_keys(array_filter($genres));
     
-        // Cập nhật sản phẩm
+ 
         DB::table('product')
             ->where('title', $title)
             ->update([
                 'title' => $request->input('titletruyen'),
                 'image' => $file_name1,
-                // Xử lý tất cả các thể loại bằng cách lặp qua mảng
+              
                 'tienhiep' => isset($genres['tienhiep']) ? 1 : 0,
                 'ngontinh' => isset($genres['ngontinh']) ? 1 : 0,
                 'quantruong' => isset($genres['quantruong']) ? 1 : 0,
@@ -197,23 +241,23 @@ class storyRepository
                 'users_id' => $userId,
             ]);
     
-        // Cập nhật mô tả truyện (nếu có)
+       
         if ($request->has('descripts')) {
             $descripts = strip_tags($request->input('descripts'));
         }
     
-        // Cập nhật chi tiết sản phẩm
+     
         DB::table('detail_product')
             ->where('title', $title)
             ->update([
                 'title' => $request->input('titletruyen'),
                 'descripts' => $descripts,
                 'tacgia' => $request->input('tacgia'),
-                'theloai' => implode(", ", $genreKeys),  // Lưu thể loại dưới dạng chuỗi
+                'theloai' => implode(", ", $genreKeys), 
                 'nguon' => $request->input('truyen_type'),
                 'trangthai' => $request->input('story-status'),
-                'capnhatmoi' => '',  // Xử lý phần này tùy theo logic
-                'viewers' => 0,  // Cài đặt viewers về 0, có thể điều chỉnh tùy logic
+                'capnhatmoi' => '', 
+                'viewers' => 0, 
             ]);
     
         return true;

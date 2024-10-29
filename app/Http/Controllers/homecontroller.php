@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\homeRepository;
-use App\Repositories\categoryRepository;
-use App\Repositories\UserRepository;
+use App\services\homeService;
+use App\services\categoryService;
+use App\services\userService;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,12 +15,15 @@ class HomeController extends Controller
     protected $categoryService;
     protected $userService;
 
-    public function __construct(UserRepository $userService, categoryRepository $categoryService, homeRepository $homeService)
+    public function __construct(UserService $userService, 
+                              CategoryService $categoryService, 
+                              HomeService $homeService)
     {
         $this->homeService = $homeService;
         $this->categoryService = $categoryService;
         $this->userService = $userService;
     }
+    
 
     public function index()
     {

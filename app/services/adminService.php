@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\services;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-
-class adminRepository
+// use Illuminate\Support\Facades\Redis;
+class adminService
 {
     public function getLinhThachHistory()
     {
@@ -60,5 +60,5 @@ class adminRepository
         return $data;
     }
 
-    // Thêm các phương thức khác nếu cần
+    
 }

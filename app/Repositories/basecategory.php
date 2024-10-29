@@ -2,7 +2,7 @@
 namespace App\Repositories;
 
 // use App\Models\detailfilm;
-use DB;
+use Illuminate\Support\Facades\DB as DB;;
 
 class basecategory extends baserepository implements basecategoryInterface
 {

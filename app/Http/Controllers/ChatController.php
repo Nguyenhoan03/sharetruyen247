@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Pusher\Pusher;
-use DB;
+use Illuminate\Support\Facades\DB as DB;;
 
 class ChatController extends Controller
 {

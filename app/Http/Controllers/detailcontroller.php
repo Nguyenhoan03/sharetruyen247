@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\detail_product;
 use App\Models\chapter;
 use App\Repositories\basecategoryInterface;
-use DB;
+use Illuminate\Support\Facades\DB as DB;;
 
 class detailcontroller extends Controller
 {

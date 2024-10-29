@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories;
+namespace App\services;
 
 use Illuminate\Support\Facades\DB;
-
-class billingRepository
+use Mail;
+class billingService
 {
    public function getBankInformation($userId)
    {

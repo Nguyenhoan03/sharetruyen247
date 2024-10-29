@@ -95,9 +95,9 @@
                                     <div class="book-3d">
                                       
 @if ($data && (Str::startsWith($data->image, 'https://') || Str::startsWith($data->image, 'http://')))
-    <img src="{{ $data->image }}" alt="" class="img-fluid" width="150" height="230" loading="lazy">
+    <img loading="lazy" src="{{ $data->image }}" alt="" class="img-fluid" width="150" height="230" loading="lazy">
 @elseif ($data)
-    <img src="{{ asset('upload/' . $data->image) }}" alt="" class="img-fluid" width="150" height="230" loading="lazy">
+    <img loading="lazy" src="{{ asset('upload/' . $data->image) }}" alt="" class="img-fluid" width="150" height="230" loading="lazy">
 @else
     <p>No image data available.</p>
 @endif

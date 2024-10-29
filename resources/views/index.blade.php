@@ -84,34 +84,34 @@
 
 <body>
 @include('header')
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-stories-hot__list">
-                        @foreach($truyenhot as $th)
-    <div class="story-item">
-        <a href="/{{$th->title}}" class="d-block text-decoration-none">
-            <div class="story-item__image">
-                <!-- <img src="{{ $th->image }}" alt="" class="img-fluid" width="150" height="230" loading="lazy"> -->
-                @if (Str::startsWith($th->image, 'https://') || Str::startsWith($th->image, 'http://'))
-        {{-- Nếu đường dẫn bắt đầu bằng 'https://' hoặc 'http://', đây là URL trực tiếp --}}
-        <img src="{{ $th->image }}" alt="" class="img-fluid" width="150" height="230" loading="lazy">
-    @else
-        {{-- Nếu không phải là URL trực tiếp, đây là đường dẫn đến thư mục --}}
-        <img src="{{ asset('upload/' . $th->image) }}" alt="" class="img-fluid" width="150" height="230" loading="lazy">
-    @endif
-            </div>
-            <h3 class="story-item__name text-one-row story-name">{{ $th->title }}</h3>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-stories-hot__list">
+                            @foreach($truyenhot as $th)
+        <div class="story-item">
+            <a href="/{{$th->title}}" class="d-block text-decoration-none">
+                <div class="story-item__image">
+                    <!-- <img loading="lazy" src="{{ $th->image }}" alt="" class="img-fluid" width="150" height="230" loading="lazy"> -->
+                    @if (Str::startsWith($th->image, 'https://') || Str::startsWith($th->image, 'http://'))
+            {{-- Nếu đường dẫn bắt đầu bằng 'https://' hoặc 'http://', đây là URL trực tiếp --}}
+            <img loading="lazy" src="{{ $th->image }}" alt="" class="img-fluid" width="150" height="230" >
+        @else
+            {{-- Nếu không phải là URL trực tiếp, đây là đường dẫn đến thư mục --}}
+            <img loading="lazy" src="{{ asset('upload/' . $th->image) }}" alt="" class="img-fluid" width="150" height="230" >
+        @endif
+                </div>
+                <h3 class="story-item__name text-one-row story-name">{{ $th->title }}</h3>
 
-            <div class="list-badge">
-                <span class="story-item__badge badge text-bg-success">{{ $th->trangthai }}</span>
+                <div class="list-badge">
+                    <span class="story-item__badge badge text-bg-success">{{ $th->trangthai }}</span>
 
-                <span class="story-item__badge story-item__badge-hot badge text-bg-danger">Hot</span>
+                    <span class="story-item__badge story-item__badge-hot badge text-bg-danger">Hot</span>
 
-                <span class="story-item__badge story-item__badge-new badge text-bg-info text-light">New</span>
-            </div>
-        </a>
-    </div>
-@endforeach
+                    <span class="story-item__badge story-item__badge-new badge text-bg-info text-light">New</span>
+                </div>
+            </a>
+        </div>
+    @endforeach
 
                          
                         </div>
@@ -329,10 +329,10 @@
                                    
                                         @if (Str::startsWith($tf->image, 'https://') || Str::startsWith($tf->image, 'http://'))
         {{-- Nếu đường dẫn bắt đầu bằng 'https://' hoặc 'http://', đây là URL trực tiếp --}}
-        <img src="{{ $tf->image }}" alt="" class="img-fluid" width="150" height="230" loading="lazy">
+        <img loading="lazy" src="{{ $tf->image }}" alt="" class="img-fluid" width="150" height="230" >
     @else
         {{-- Nếu không phải là URL trực tiếp, đây là đường dẫn đến thư mục --}}
-        <img src="{{ asset('upload/' . $tf->image) }}" alt="" class="img-fluid" width="150" height="230" loading="lazy">
+        <img loading="lazy" src="{{ asset('upload/' . $tf->image) }}" alt="" class="img-fluid" width="150" height="230" >
     @endif
                                 </a>
                                 <h3 class="fs-6 story-item-full__name fw-bold text-center mb-0">

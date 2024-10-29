@@ -372,7 +372,7 @@
     </script> -->
     <script>
 function showSupportAlert(event, linhthach) {
-    event.preventDefault(); // Ngăn chặn sự kiện mặc định của form
+    event.preventDefault(); 
 
     var thachAmount = parseInt(document.getElementById("thach-input").value.trim(), 10);
     var message = document.getElementById("message-input").value.trim();

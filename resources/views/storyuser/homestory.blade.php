@@ -90,16 +90,16 @@
 </div>
 
 <div style="background-color: white; width: 22%; text-align: center;" class="col-xs-12 col-md-3">
-    <p style="margin: 0;color:green">{{$totalViews}}</p>
+    <p style="margin: 0;color:green">{{$totalViews ?? 0}}</p>
     <p style="margin: 0;">Lượt Xem</p>
 </div>
 <div style="background-color: white; width: 22%; text-align: center;" class="col-xs-12 col-md-3">
-    <p style="margin: 0;color:blue">{{$totalproduct}}</p>
+    <p style="margin: 0;color:blue">{{$totalproduct ?? 0}}</p>
     <p style="margin: 0;">Truyện đã viết</p>
 </div>
 
 <div style="background-color: white; width: 22%; text-align: center;" class="col-xs-12 col-md-3">
-    <p style="margin: 0;color:pink">{{$totalChapters}}</p>
+    <p style="margin: 0;color:pink">{{$totalChapters ?? 0}}</p>
     <p style="margin: 0;">Chương đã viết</p>
 </div>
 

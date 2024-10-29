@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\adminRepository;
-use App\Repositories\UserRepository;
-use App\Repositories\storyRepository;
+use App\services\adminService;
+use App\services\userService;
+use App\services\storyService;
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
@@ -14,7 +14,7 @@ class AdminController extends Controller
     protected $userService;
     protected $storyService;
 
-    public function __construct(adminRepository $adminService, UserRepository $userService, storyRepository $storyService)
+    public function __construct(adminService $adminService, userService $userService, storyService $storyService)
     {
         $this->adminService = $adminService;
         $this->userService = $userService;
@@ -55,7 +55,8 @@ class AdminController extends Controller
 
     public function duyettruyenuser()
     {
-        $data = $this->storyService->getStoriesWithChapterCount();
+        $userId = $this->userService->getUserId();
+        $data = $this->storyService->getStoriesWithChapterCount($userId);
         return view('hoanadmin.duyettruyen', compact('data'));
     }
 

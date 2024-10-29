@@ -49,7 +49,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark header__navbar p-md-0">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="./assets/images/logo_text.png" alt="Logo Suu Truyen" srcset="" class="img-fluid"
+                    <img loading="lazy" src="./assets/images/logo_text.png" alt="Logo Suu Truyen" srcset="" class="img-fluid"
                         style="width: 200px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -174,7 +174,7 @@
         <nav class="navbar navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html">
-                    <img src="./assets/images/logo_text.png" alt="Logo Suu Truyen" srcset="" class="img-fluid"
+                    <img loading="lazy" src="./assets/images/logo_text.png" alt="Logo Suu Truyen" srcset="" class="img-fluid"
                         style="width: 200px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
@@ -184,7 +184,7 @@
                 <div class="offcanvas offcanvas-end text-bg-dark w-75" tabindex="-1" id="offcanvasDarkNavbar"
                     aria-labelledby="offcanvasDarkNavbarLabel">
                     <div class="offcanvas-header">
-                        <img src="./assets/images/logo_text.png" alt="Logo Suu Truyen" srcset="" class="img-fluid"
+                        <img loading="lazy" src="./assets/images/logo_text.png" alt="Logo Suu Truyen" srcset="" class="img-fluid"
                             style="width: 200px;">
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                             aria-label="Close"></button>
@@ -292,7 +292,7 @@
                         <div class="story-item">
                             <a href="#" class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/tu_cam.jpg" alt="Tự Cẩm" class="img-fluid" width="150"
+                                    <img loading="lazy" src="./assets/images/tu_cam.jpg" alt="Tự Cẩm" class="img-fluid" width="150"
                                         height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Tự Cẩm</h3>
@@ -312,7 +312,7 @@
                         <div class="story-item">
                             <a href="#" class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/nang_khong_muon_lam_hoang_hau.jpg"
+                                    <img loading="lazy" src="./assets/images/nang_khong_muon_lam_hoang_hau.jpg"
                                         alt="Nàng Không Muốn Làm Hoàng Hậu" class="img-fluid" width="150" height="230"
                                         loading="lazy">
                                 </div>
@@ -333,7 +333,7 @@
                         <div class="story-item">
                             <a href="#" class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/kieu_sung_vi_thuong.jpg" alt="Kiều Sủng Vi Thượng"
+                                    <img loading="lazy" src="./assets/images/kieu_sung_vi_thuong.jpg" alt="Kiều Sủng Vi Thượng"
                                         class="img-fluid" width="150" height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Kiều Sủng Vi Thượng</h3>
@@ -353,7 +353,7 @@
                         <div class="story-item">
                             <a href="#" class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/anh_dao_ho_phach.jpg" alt="Anh Đào Hổ Phách"
+                                    <img loading="lazy" src="./assets/images/anh_dao_ho_phach.jpg" alt="Anh Đào Hổ Phách"
                                         class="img-fluid" width="150" height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Anh Đào Hổ Phách</h3>
@@ -374,7 +374,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/cuoi_truoc_yeu_sau_mong_tieu_nhi.jpg"
+                                    <img loading="lazy" src="./assets/images/cuoi_truoc_yeu_sau_mong_tieu_nhi.jpg"
                                         alt="Cưới Trước Yêu Sau - Mộng Tiêu Nhị" class="img-fluid" width="150"
                                         height="230" loading="lazy">
                                 </div>
@@ -396,7 +396,7 @@
                         <div class="story-item">
                             <a href="#" class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/me_dam.jpg" alt="Mê Đắm" class="img-fluid" width="150"
+                                    <img loading="lazy" src="./assets/images/me_dam.jpg" alt="Mê Đắm" class="img-fluid" width="150"
                                         height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Mê Đắm</h3>
@@ -417,7 +417,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/khong_phu_the_duyen.jpg" alt="Không Phụ Thê Duyên"
+                                    <img loading="lazy" src="./assets/images/khong_phu_the_duyen.jpg" alt="Không Phụ Thê Duyên"
                                         class="img-fluid" width="150" height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Không Phụ Thê Duyên</h3>
@@ -438,7 +438,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/diu_dang_tan_xuong.jpg" alt="Dịu Dàng Tận Xương"
+                                    <img loading="lazy" src="./assets/images/diu_dang_tan_xuong.jpg" alt="Dịu Dàng Tận Xương"
                                         class="img-fluid" width="150" height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Dịu Dàng Tận Xương</h3>
@@ -459,7 +459,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/vo_chong_sieu_sao_hoi_ngot.jpg"
+                                    <img loading="lazy" src="./assets/images/vo_chong_sieu_sao_hoi_ngot.jpg"
                                         alt="Vợ Chồng Siêu Sao Hơi Ngọt" class="img-fluid" width="150" height="230"
                                         loading="lazy">
                                 </div>
@@ -481,7 +481,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/that_u_that_u_phai_la_hong_phai_xanh_tham.jpg"
+                                    <img loading="lazy" src="./assets/images/that_u_that_u_phai_la_hong_phai_xanh_tham.jpg"
                                         alt="Thật Ư? Thật Ư? Phải Là Hồng Phai Xanh Thắm" class="img-fluid" width="150"
                                         height="230" loading="lazy">
                                 </div>
@@ -504,7 +504,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/thieu_tuong_vo_ngai_noi_gian_roi.jpg"
+                                    <img loading="lazy" src="./assets/images/thieu_tuong_vo_ngai_noi_gian_roi.jpg"
                                         alt="Thiếu Tướng, Vợ Ngài Nổi Giận Rồi" class="img-fluid" width="150"
                                         height="230" loading="lazy">
                                 </div>
@@ -526,7 +526,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/cung_chieu_vo_nho_troi_ban.jpg"
+                                    <img loading="lazy" src="./assets/images/cung_chieu_vo_nho_troi_ban.jpg"
                                         alt="Cưng Chiều Vợ Nhỏ Trời Ban" class="img-fluid" width="150" height="230"
                                         loading="lazy">
                                 </div>
@@ -547,7 +547,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/thien_huong_nguoi_mu_liec_mat_dua_tinh.jpg"
+                                    <img loading="lazy" src="./assets/images/thien_huong_nguoi_mu_liec_mat_dua_tinh.jpg"
                                         alt="Thiên Hướng Người Mù, Liếc Mắt Đưa Tình" class="img-fluid" width="150"
                                         height="230" loading="lazy">
                                 </div>
@@ -569,7 +569,7 @@
                         <div class="story-item">
                             <a href="#" class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/hat_de_va_chanel.jpg" alt="Hạt Dẻ Và Chanel"
+                                    <img loading="lazy" src="./assets/images/hat_de_va_chanel.jpg" alt="Hạt Dẻ Và Chanel"
                                         class="img-fluid" width="150" height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Hạt Dẻ Và Chanel</h3>
@@ -588,7 +588,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/xuyen_chung_chi_thanh_xuan.jpg"
+                                    <img loading="lazy" src="./assets/images/xuyen_chung_chi_thanh_xuan.jpg"
                                         alt="Xuyên Chứng Chỉ Thanh Xuân" class="img-fluid" width="150" height="230"
                                         loading="lazy">
                                 </div>
@@ -607,7 +607,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/dan_loi_vao_tim_em.jpg" alt="Dẫn Lối Vào Tim Em"
+                                    <img loading="lazy" src="./assets/images/dan_loi_vao_tim_em.jpg" alt="Dẫn Lối Vào Tim Em"
                                         class="img-fluid" width="150" height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Dẫn Lối Vào Tim Em</h3>
@@ -625,7 +625,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/that_gia_vo_ngai_lai_buong_roi.jpg"
+                                    <img loading="lazy" src="./assets/images/that_gia_vo_ngai_lai_buong_roi.jpg"
                                         alt="Thất Gia Vợ Ngài Lại Bướng Rồi!!" class="img-fluid" width="150"
                                         height="230" loading="lazy">
                                 </div>
@@ -645,7 +645,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/co_nang_xau_xi_la_ban_gai_tong_tai.jpg"
+                                    <img loading="lazy" src="./assets/images/co_nang_xau_xi_la_ban_gai_tong_tai.jpg"
                                         alt="Cô Nàng Xấu Xí Là Bạn Gái Tổng Tài!!" class="img-fluid" width="150"
                                         height="230" loading="lazy">
                                 </div>
@@ -665,7 +665,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/co_vo_buong_binh_mua_mot_tang_hai.jpg"
+                                    <img loading="lazy" src="./assets/images/co_vo_buong_binh_mua_mot_tang_hai.jpg"
                                         alt="Cô Vợ Bướng Bỉnh Mua Một Tặng Hai" class="img-fluid" width="150"
                                         height="230" loading="lazy">
                                 </div>
@@ -685,7 +685,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/em_anh_va_chung_ta.jpg" alt="Em, Anh Và Chúng Ta"
+                                    <img loading="lazy" src="./assets/images/em_anh_va_chung_ta.jpg" alt="Em, Anh Và Chúng Ta"
                                         class="img-fluid" width="150" height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Em, Anh Và Chúng Ta</h3>
@@ -704,7 +704,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/me_vo_khong_loi_ve.jpg" alt="Mê Vợ Không Lối Về"
+                                    <img loading="lazy" src="./assets/images/me_vo_khong_loi_ve.jpg" alt="Mê Vợ Không Lối Về"
                                         class="img-fluid" width="150" height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Mê Vợ Không Lối Về</h3>
@@ -724,7 +724,7 @@
                             <a href="#" 
                             class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/re_quy_troi_cho.jpg" alt="Rể Quý Trời Cho"
+                                    <img loading="lazy" src="./assets/images/re_quy_troi_cho.jpg" alt="Rể Quý Trời Cho"
                                         class="img-fluid" width="150" height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Rể Quý Trời Cho</h3>
@@ -742,7 +742,7 @@
                             <a href="#"
                                 class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/bi_an_doi_long_phuong.jpg" alt="Bí Ẩn Đôi Long Phượng"
+                                    <img loading="lazy" src="./assets/images/bi_an_doi_long_phuong.jpg" alt="Bí Ẩn Đôi Long Phượng"
                                         class="img-fluid" width="150" height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Bí Ẩn Đôi Long Phượng</h3>
@@ -761,7 +761,7 @@
                             <a href="#" 
                             class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/thien_ha_hoan_ca.jpg" alt="Thiên Hạ Hoan Ca"
+                                    <img loading="lazy" src="./assets/images/thien_ha_hoan_ca.jpg" alt="Thiên Hạ Hoan Ca"
                                         class="img-fluid" width="150" height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Thiên Hạ Hoan Ca</h3>
@@ -779,7 +779,7 @@
                         <div class="story-item">
                             <a href="#" class="d-block text-decoration-none">
                                 <div class="story-item__image">
-                                    <img src="./assets/images/quay_lai_tuoi_15.jpg" alt="Quay Lại Tuổi 15"
+                                    <img loading="lazy" src="./assets/images/quay_lai_tuoi_15.jpg" alt="Quay Lại Tuổi 15"
                                         class="img-fluid" width="150" height="230" loading="lazy">
                                 </div>
                                 <h3 class="story-item__name text-one-row story-name">Quay Lại Tuổi 15</h3>

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories;
+namespace App\services;
 
 use Illuminate\Support\Facades\DB;
 
-class categoryRepository
+class categoryService
 {
     public function getAllCategories()
     {
@@ -56,5 +56,5 @@ class categoryRepository
             ->get();
     }
 
-    // Thêm các phương thức khác nếu cần
+    
 }

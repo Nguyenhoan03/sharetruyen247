@@ -14,7 +14,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark header__navbar p-md-0">
             <div class="container">
                 <a class="navbar-brand" href="/">
-                    <img src="{{asset('/assets/images/logo_text.png')}}" alt="Logo Suu Truyen" srcset="" class="img-fluid"
+                    <img loading="lazy" src="{{asset('/assets/images/logo_text.png')}}" alt="Logo Suu Truyen" srcset="" class="img-fluid"
                         style="width: 200px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -183,7 +183,7 @@
         </div>
         
         <div class="payment-security">
-            <img src="https://sharecode.vn/assets/images/secure.png" alt=""> 
+            <img loading="lazy" src="https://sharecode.vn/assets/images/secure.png" alt=""> 
             <p> Chứng nhận giao dịch an toàn!</p>
         </div>
     </div>

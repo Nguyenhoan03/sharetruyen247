@@ -25,7 +25,7 @@ class crawlcontroller extends Controller
         });
     
         foreach ($title as $key => $value) {
-            // Check if the title already exists in the Product table
+          
             $existingProduct = product::where('title', $value)->first();
          
             if (!$existingProduct) {
@@ -57,7 +57,7 @@ class crawlcontroller extends Controller
                     'trang_thai' => 'đã duyệt',
                 ]);
     
-                // Introduce a delay of 2 seconds between requests
+              
                 sleep(1);
     
                 $link = $crawler->filter('li.story-list .info h3.title a')->eq($key)->attr('href');
@@ -103,35 +103,35 @@ class crawlcontroller extends Controller
             'viewers' => 0,
         ];
     
-        // Save data for the first page to the database or perform other operations
+     
         detail_product::create($data);
         sleep(1);
     
-        // Extract chapter links for the first page
+     
         $this->scrapeChaptersFromPage($crawler, $title);
     
-        //crawl từ trang 2 trở đi
+     
         $lastPage = $crawler->filter('ul.pagination li:last-child')->previousAll()->eq(0)->text();
         for ($page = 2; $page <= $lastPage; $page++) {
-            // Generate URL for the current page
+         
             $pageUrl = $detailUrl . '/' . $page;
     
-            // Make request for the current page
+       
             $crawler = Goutte::request('GET', $pageUrl);
     
-            // Extract chapter links for the current page
+        
             $this->scrapeChaptersFromPage($crawler, $title);
         }
     }
     
     private function scrapeChaptersFromPage($crawler, $title)
     {
-        // Extract chapter links for the current page
+     
         $linkchpater = $crawler->filter('#chapters ul.chapters li a')->each(function ($node) {
             return $node->attr("href");
         });
     
-        // Loop through each chapter link and scrape data
+       
         foreach ($linkchpater as $linkct) {
             $this->scrapechapter($linkct, $title);
             print("Lấy dữ liệu thành công cho chapter " . $linkct . "\n");

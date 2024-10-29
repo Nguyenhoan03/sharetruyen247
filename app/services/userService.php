@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace App\services;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-class UserRepository
+class UserService
 {
     public function getUserId()
     {
@@ -56,17 +56,22 @@ class UserRepository
     public function loginUser($request)
     {
         $credentials = $request->only('email', 'password');
-
+    
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             
-            if ($user->hasRole('admin')) {
+            $isAdmin = DB::table('model_has_roles')
+                ->where('model_id', $user->id)
+                ->where('role_id', 2)
+                ->exists();
+                
+            if ($isAdmin) {
                 return ['success' => true, 'redirect' => '/pageadmin'];
             } else {
                 return ['success' => true, 'redirect' => '/'];
             }
         }
-
+    
         return ['success' => false];
     }
 }

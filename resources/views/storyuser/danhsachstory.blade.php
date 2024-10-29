@@ -148,7 +148,7 @@
 
     </form>
 </div>
-
+  
 
 
 
@@ -177,7 +177,7 @@
                 <img style="width:100px " src="{{ asset('upload/' . $dt->image) }}" alt="">
               <div class="" style="padding-left:10px;">
                 <p style="color: tomato;font-size:19px;font-weight:550">{{$dt->title}}</p>
-                <p><i class="fa-solid fa-eye"></i> {{$dt->viewers}} Lượt xem </p>
+                <p><i class="fa-solid fa-eye"></i> {{$dt->viewers ?? 0}} Lượt xem </p>
                 <p> {{$dt->total_chapters}} Chương </p>
                 <button style="background-color:#46A24A;border: none;border-radius:7px"><a style="color: white;font-size:13px" href="/story_user/editerstory/{{$dt->title}}"><i class="fa-solid fa-pen"></i> SỬA THÔNG TIN TRUYỆN</a></button>
                 </div>
@@ -352,7 +352,7 @@ function openForm(title) {
 
     // Sử dụng Ajax để gửi yêu cầu đến controller và nhận danh sách các chapter
     $.ajax({
-        url: '/story_user/thu-phi-user/' + title, // Concatenate title properly
+        url: '/story_user/thu-phi-user/' + title, 
         type: 'GET',
         data: { title: title },
         success: function(response) {
@@ -365,10 +365,10 @@ function openForm(title) {
                 checkbox.setAttribute("type", "checkbox");
                 checkbox.setAttribute("name", "chapter[]");
                 checkbox.setAttribute("value", chapter.chapter);
+                checkbox.style.marginRight = "5px";
 
                 var label = document.createElement("label");
-                label.innerHTML = chapter.chapter;
-
+                label.innerHTML = chapter.chapter + " - " + (chapter.form_doc === null || chapter.form_doc === "null" ? "0" : chapter.form_doc) + " Linh thạch";
                 var div = document.createElement("div");
                 div.appendChild(checkbox);
                 div.appendChild(label);

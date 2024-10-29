@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace App\services;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use SebastianBergmann\Type\VoidType;
-
-class chapterRepository
+use Illuminate\Http\Request;
+class chapterService
 {
     public function getChapterData($title, $chapter)
     {
@@ -53,21 +53,67 @@ class chapterRepository
         return null;
     }
 
-    public function grantLinhThach($request, $userId)
+  
+    public function createGrantRecord(Request $request, $user_grant)
     {
-        DB::beginTransaction();
-
-        try {
-            $this->createGrantRecord($request, $userId);
-            $this->updateUserLinhThach($userId, $request->to_users_id, $request['linhthach_grant']);
-            $this->sendEmails($request, $userId);
-
-            DB::commit();
-            return ['message' => 'Linh thach granted successfully.', 'status' => 200];
-        } catch (\Exception $e) {
-            DB::rollback();
-            return ['message' => 'An error occurred while granting linh thach.', 'status' => 500];
-        }
+        DB::table('grant_linhthach')->insert([
+            'title' => $request->title,
+            'chapter' => $request->chapter,
+            'linhthach_grant' => $request['linhthach_grant'],
+            'message' => $request->input('message'),
+            'users_id' => $user_grant,
+            'to_users_id' => $request->to_users_id,
+        ]);
+    }
+    
+    public function updateUserLinhThach($user_grant, $to_users_id, $linhthach_grant)
+    {
+     
+        $grantingUser = DB::table('users')->where('id', $user_grant)->first();
+        $linhthachAfter = $grantingUser->linh_thach - $linhthach_grant;
+        
+        DB::table('users')->where('id', $user_grant)->update([
+            'linh_thach' => $linhthachAfter,
+        ]);
+    
+      
+        $receivingUser = DB::table('users')->where('id', $to_users_id)->first();
+        $linhthachForReceiver = $receivingUser->linh_thach + ($linhthach_grant * 0.7);
+        
+        DB::table('users')->where('id', $to_users_id)->update([
+            'linh_thach' => $linhthachForReceiver,
+        ]);
+    
+       
+        $adminUserId = 6;
+        $adminUser = DB::table('users')->where('id', $adminUserId)->first();
+        $linhthachForAdmin = $adminUser->linh_thach + ($linhthach_grant * 0.3);
+        
+        DB::table('users')->where('id', $adminUserId)->update([
+            'linh_thach' => $linhthachForAdmin,
+        ]);
+    }
+    
+    public function sendEmails(Request $request, $user_grant)
+    {
+        $datanguoigui = [
+            'title' => $request->title,
+            'chapter' => $request->chapter,
+            'linhthach_grant' => $request['linhthach_grant'],
+            'message' => $request->input('message'),
+            'users_id' => $user_grant,
+            'to_users_id' => $request->to_users_id,
+        ];
+    
+      
+        Mail::send('mail', compact('datanguoigui'), function ($email) {
+            $email->to(auth()->user()->email, 'ban quản trị');
+        });
+    
+     
+        Mail::send('maildocgia', compact('datanguoigui'), function ($email) use ($request) {
+            $email->to($request->to_users_id, 'ban quản trị');
+        });
     }
 
     
@@ -79,6 +125,7 @@ public function createChapter($request,$title){
    ]);
  }
  public function getChaptersByTitle ($title,$userId){
+    
     return DB::table('product')
     ->join('chapter','product.title','=','chapter.title')
 

@@ -1,27 +1,41 @@
 <?php
 
-namespace App\Repositories;
+namespace App\services;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
-
-class homeRepository
-{
+use Illuminate\Support\Facades\Config;
+class homeService
+{   
     public function getHomePageData()
     {
-        $dmcategory = $this->getCachedCategories();
-        $truyenhot = $this->getHotStories();
-        $truyenmoi = $this->getNewStories();
-        $truyenfull = $this->getCompletedStories();
-        $toptruyen = $this->getTopStories();
-
+        $dmcategory = Cache::remember('dmcategory', 60 * 60, function () {
+            return $this->getCategories();
+        });
+    
+        $truyenhot = Cache::remember('truyenhot', 60 * 60, function () {
+            return $this->getHotStories();
+        });
+    
+        $truyenmoi = Cache::remember('truyenmoi', 60 * 60, function () {
+            return $this->getNewStories();
+        });
+    
+        $truyenfull = Cache::remember('truyenfull', 60 * 60, function () {
+            return $this->getCompletedStories();
+        });
+    
+        $toptruyen = Cache::remember('toptruyen', 60 * 60, function () {
+            return $this->getTopStories();
+        });
+    
         return compact('dmcategory', 'truyenhot', 'truyenmoi', 'truyenfull', 'toptruyen');
     }
 
-    private function getCachedCategories()
+  
+
+    private function getCategories()
     {
-        return Cache::remember('dmcategory', 60, function () {
             return DB::table('category')->get();
-        });
     }
 
     private function getHotStories()
@@ -98,5 +112,5 @@ class homeRepository
             ->get();
     }
 
-    // Thêm các phương thức khác nếu cần
+   
 }

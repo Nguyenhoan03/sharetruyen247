@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\StoryRepository;
-use App\Repositories\ChapterRepository;
-use App\Repositories\billingRepository;
-use App\Repositories\UserRepository;
+use App\services\storyService;
+use App\services\chapterService;
+use App\services\billingService;
+use App\services\userService;
 use Illuminate\Support\Facades\Session;
 
 class StoryUserController extends Controller
@@ -16,8 +16,12 @@ class StoryUserController extends Controller
     protected $billingService;
     protected $userService;
 
-    public function __construct(StoryRepository $storyService, ChapterRepository $chapterService, billingRepository $billingService, UserRepository $userService)
-    {
+    public function __construct(
+        StoryService $storyService,
+        ChapterService $chapterService,
+        BillingService $billingService,
+        UserService $userService
+    ) {
         $this->storyService = $storyService;
         $this->chapterService = $chapterService;
         $this->billingService = $billingService;

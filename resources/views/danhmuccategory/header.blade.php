@@ -12,7 +12,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark header__navbar p-md-0">
             <div class="container">
                 <a class="navbar-brand" href="/">
-                    <img src="{{asset('/assets/images/logo_text.png')}}" alt="Logo Suu Truyen" srcset="" class="img-fluid"
+                    <img loading="lazy" src="{{asset('/assets/images/logo_text.png')}}" alt="Logo Suu Truyen" srcset="" class="img-fluid"
                         style="width: 200px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -181,9 +181,31 @@
         </div>
         
         <div class="payment-security">
-            <img src="https://sharecode.vn/assets/images/secure.png" alt=""> 
+            <img loading="lazy" src="https://sharecode.vn/assets/images/secure.png" alt=""> 
             <p> Chứng nhận giao dịch an toàn!</p>
         </div>
     </div>
   
 @endif
+
+<script>
+    function openPurchaseForm() {
+        // Kiểm tra xem người dùng đã đăng nhập hay chưa
+        if (!isAuthenticated()) {
+            // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
+            window.location.href = "/author/loginuser";
+        } else {
+            // Nếu đã đăng nhập, mở form mua linh thạch
+            document.querySelector(".payment-container").style.display = "block";
+        }
+    }
+
+    function isAuthenticated() {
+        // Kiểm tra xem người dùng đã đăng nhập hay chưa bằng cách sử dụng Auth::check()
+        return {{ Auth::check() ? 'true' : 'false' }};
+    }
+
+    function closeForm() {
+        document.querySelector(".payment-container").style.display = "none";
+    }
+</script>
