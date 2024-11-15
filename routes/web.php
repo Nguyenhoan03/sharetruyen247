@@ -12,11 +12,7 @@ use App\Http\Controllers\{
     chaptercontroller
 };
 
-/*
-|--------------------------------------------------------------------------
-| Site Routes
-|--------------------------------------------------------------------------
-*/
+
 
 // Sitemap Route
 Route::get('/sitemap', function() {
@@ -27,11 +23,7 @@ Route::get('/sitemap', function() {
     return response()->file($path, ['Content-Type' => 'application/xml']);
 });
 
-/*
-|--------------------------------------------------------------------------
-| Crawler Routes
-|--------------------------------------------------------------------------
-*/
+
 
 Route::group(['prefix' => 'crawler'], function () {
     Route::get('/{category}', [crawlcontroller::class, 'scrapeMainPage'])
@@ -44,11 +36,7 @@ Route::group(['prefix' => 'crawler'], function () {
         ]));
 });
 
-/*
-|--------------------------------------------------------------------------
-| Admin Routes
-|--------------------------------------------------------------------------
-*/
+
 
 Route::group(['prefix' => 'pageadmin','middleware' => 'checklogin'], function() {
     Route::controller(admincontroller::class)->group(function () {
@@ -64,11 +52,7 @@ Route::group(['prefix' => 'pageadmin','middleware' => 'checklogin'], function() 
     });
 });
 
-/*
-|--------------------------------------------------------------------------
-| Auth Routes
-|--------------------------------------------------------------------------
-*/
+
 
 Route::group(['prefix' => 'author'], function () {
     Route::controller(homecontroller::class)->group(function () {
@@ -80,11 +64,7 @@ Route::group(['prefix' => 'author'], function () {
     });
 });
 
-/*
-|--------------------------------------------------------------------------
-| Story Management Routes
-|--------------------------------------------------------------------------
-*/
+
 
 Route::group(['prefix' => 'story_user', 'middleware' => 'checklogin'], function () {
     Route::controller(storyusercontroller::class)->group(function () {
@@ -110,22 +90,14 @@ Route::group(['prefix' => 'story_user', 'middleware' => 'checklogin'], function 
     });
 });
 
-/*
-|--------------------------------------------------------------------------
-| Chat Routes
-|--------------------------------------------------------------------------
-*/
+
 
 Route::group(['middleware' => 'checklogin'], function () {
     Route::get('/roomchat', [chatcontroller::class, 'index']);
     Route::post('/send', [chatcontroller::class, 'send']);
 });
 
-/*
-|--------------------------------------------------------------------------
-| Category Routes
-|--------------------------------------------------------------------------
-*/
+
 
 Route::controller(danhmuccategorycontroller::class)->group(function () {
     // Full Stories Routes
@@ -161,11 +133,7 @@ Route::controller(danhmuccategorycontroller::class)->group(function () {
     });
 });
 
-/*
-|--------------------------------------------------------------------------
-| Main Routes
-|--------------------------------------------------------------------------
-*/
+
 
 Route::post('/grant_linhthach', [chaptercontroller::class, 'grant_linhthach']);
 Route::get('/', [homecontroller::class, 'index']);
