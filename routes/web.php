@@ -9,7 +9,8 @@ use App\Http\Controllers\{
     storyusercontroller,
     danhmuccategorycontroller,
     detailcontroller,
-    chaptercontroller
+    chaptercontroller,
+    paymentcontroller
 };
 
 
@@ -39,12 +40,12 @@ Route::group(['prefix' => 'crawler'], function () {
 
 
 Route::group(['prefix' => 'pageadmin','middleware' => 'checklogin'], function() {
-    Route::controller(admincontroller::class)->group(function () {
+    Route::controller(Admincontroller::class)->group(function () {
         Route::get('/', 'dashboardadmin');
         Route::get('/thong_tin_user', 'thong_tin_user');
         Route::get('/lich_su_nap_linh_thach_user', 'lich_su_nap_linh_thach_user');
         Route::get('/adminnaplinhthachforuser/{id}', 'nap_linh_thach_user');
-        Route::post('/postnap_linh_thach_user', 'postnap_linh_thach_user');
+        Route::post('/postnap_linh_thach_user', 'post_nap_linh_thach_user');
         Route::get('/duyettruyenuser', 'duyettruyenuser');
         Route::post('/update-trang-thai', 'updateTrangThai');
         Route::get('/xem-chapter/{title}', 'xemchapter');
@@ -134,9 +135,11 @@ Route::controller(danhmuccategorycontroller::class)->group(function () {
 });
 
 
-
+Route::post('/payment/vnpay', [paymentcontroller::class, 'createPayment'])->name('payment.vnpay');
+Route::get('/payment/vnpay-return', [paymentcontroller::class, 'paymentReturn'])->name('payment.vnpay.return');
 Route::post('/grant_linhthach', [chaptercontroller::class, 'grant_linhthach']);
 Route::get('/', [homecontroller::class, 'index']);
 Route::get('/search', [homecontroller::class, 'search']);
 Route::get('/{title}', [detailcontroller::class, 'index']);
 Route::get('/{title}/{chapter}', [chaptercontroller::class, 'index']);
+

@@ -4,6 +4,7 @@ namespace App\services;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendMailJob;
 // use Illuminate\Support\Facades\Redis;
 class adminService
 {
@@ -46,14 +47,17 @@ class adminService
 
     private function sendLinhThachEmail($data, $thoigian)
     {
-        Mail::send('mailadminnaplinhthach', [
-            'request' => $data,
-            'thoigian' => $thoigian,
-            'solinhthachnap' => $data['linh_thach'],
-        ], function ($email) use ($data) {
-            $email->to($data['email'], 'ban quản trị');
-        });
+        SendMailJob::dispatch(
+            'mailadminnaplinhthach', 
+            [
+                'request' => $data,
+                'thoigian' => $thoigian,
+                'solinhthachnap' => $data['linh_thach'],
+            ], 
+            $data['email']
+        );
     }
+    
     public function getAdminRevenue(){
         $data = DB::table('users')
         ->where('id',6)->first();

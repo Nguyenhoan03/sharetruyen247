@@ -191,7 +191,7 @@ private function getProductCategories($product): array
             return false;
         }
     
-   
+
         if ($request->hasFile('fileInput')) {
             $file1 = $request->file('fileInput');
             $file_name1 = $file1->getClientOriginalName();

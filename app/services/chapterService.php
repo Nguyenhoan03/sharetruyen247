@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use SebastianBergmann\Type\VoidType;
 use Illuminate\Http\Request;
+use App\Jobs\SendMailJob;
 class chapterService
 {
     public function getChapterData($title, $chapter)
@@ -106,14 +107,17 @@ class chapterService
         ];
     
       
-        Mail::send('mail', compact('datanguoigui'), function ($email) {
-            $email->to(auth()->user()->email, 'ban quản trị');
-        });
-    
-     
-        Mail::send('maildocgia', compact('datanguoigui'), function ($email) use ($request) {
-            $email->to($request->to_users_id, 'ban quản trị');
-        });
+        // Mail::send('mail', compact('datanguoigui'), function ($email) {
+        //     $email->to(auth()->user()->email, 'ban quản trị');
+        // });
+        
+        // Mail::send('maildocgia', compact('datanguoigui'), function ($email) use ($request) {
+        //         $email->to($request->to_users_id, 'ban quản trị');
+        //     });
+
+
+            SendMailJob::dispatch(new SendMailJob('mail', compact('datanguoigui'), auth()->user()->email));
+            SendMailJob::dispatch(new SendMailJob('maildocgia', compact('datanguoigui'), $request->to_users_id));
     }
 
     

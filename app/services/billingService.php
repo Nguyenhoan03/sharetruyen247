@@ -4,6 +4,7 @@ namespace App\services;
 
 use Illuminate\Support\Facades\DB;
 use Mail;
+use App\Jobs\SendMailJob;
 class billingService
 {
    public function getBankInformation($userId)
@@ -73,9 +74,10 @@ class billingService
                'linh_thach' => $linhthachadminafter,
             ]);
 
-         Mail::send('mailphidoctruyen', compact('dataphidoctruyen'), function ($email) use ($tacgia) {
-            $email->to($tacgia->email, 'ban quản trị');
-         });
+         // Mail::send('mailphidoctruyen', compact('dataphidoctruyen'), function ($email) use ($tacgia) {
+         //    $email->to($tacgia->email, 'ban quản trị');
+         // });
+         SendMailJob::dispatch(new SendMailJob('mailphidoctruyen', compact('dataphidoctruyen'), $tacgia->email));
          $existingRecord = DB::table('purchased_products')
             ->where('title', $title)
             ->where('chapter', $chapter)

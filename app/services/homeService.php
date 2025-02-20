@@ -4,8 +4,11 @@ namespace App\services;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
+use Elasticsearch\ClientBuilder;
+
 class homeService
 {   
+   
     public function getHomePageData()
     {
         $dmcategory = Cache::remember('dmcategory', 60 * 60, function () {
@@ -101,6 +104,7 @@ class homeService
 
     public function searchStories($search)
     {
+
         return DB::table('product')
             ->join('detail_product', 'product.title', '=', 'detail_product.title')
             ->join('chapter', function ($join) {
@@ -111,6 +115,6 @@ class homeService
             ->where('product.title', 'like', '%' . $search . '%')
             ->get();
     }
-
+   
    
 }
