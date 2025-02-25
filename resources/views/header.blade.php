@@ -2,10 +2,10 @@
 
  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QH7RWSDBDK"></script>
  <script>
-     window.dataLayer = window.dataLayer || [];
+      window.dataLayer = window.dataLayer || [];
 
      function gtag() {
-         dataLayer.push(arguments);
+        dataLayer.push(arguments);
      }
      gtag('js', new Date());
 
@@ -32,12 +32,14 @@
                          Thể loại
                      </a>
                      <ul style="width:300px;padding-left:15px" class="dropdown-menu dropdown-menu-custom">
+                         @if(isset($dmcategory) && !empty($dmcategory))
                          @foreach($dmcategory as $dmct)
-
                          <li class="">
                              <a href="/the-loai/{{ $dmct->namecategory }}" class="text-decoration-none text-dark hover-title">{{ $dmct->namecategory }}</a>
                          </li>
                          @endforeach
+                       
+                         @endif
                      </ul>
                  </li>
 
@@ -47,7 +49,6 @@
                          Đăng truyện
                      </a>
                  </li>
-
 
                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                      <!-- Thêm ô chứa thông tin người dùng -->
@@ -177,24 +178,14 @@
                      <button class="payment-method" data-id="2"
                          style="background-color: #007bff; color: white; padding: 12px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: 0.3s; box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);"
                          onclick="openPaymentForm(2)">
-                         2 - Ví điện tử
+                         2 - Vnpay
                      </button>
 
-                     <button class="payment-method" data-id="3"
-                         style="background-color: #007bff; color: white; padding: 12px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: 0.3s; box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);"
-                         onclick="openPaymentForm(3)">
-                         3 - Vnpay
-                     </button>
 
-                     <button class="payment-method" data-id="4"
-                         style="background-color: #007bff; color: white; padding: 12px 20px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: 0.3s; box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);"
-                         onclick="openPaymentForm(4)">
-                         4 - Zalopay
-                     </button>
                  </div>
 
-
                  <div class="payment-qr">
+                    <div>
                      <p>Bạn vui lòng CK số tiền muốn nạp bằng cách quét mã QR ngân hàng sau:</p>
                      <img style="display: block; margin: 0 auto; width: 25%;" src="{{ asset('/assets/images/z5131080402044_8d3a983aee416094928631e2bfd7c942.jpg') }}" alt="">
                  </div>
@@ -211,31 +202,51 @@
                      <img loading="lazy" src="https://sharecode.vn/assets/images/secure.png" alt="">
                      <p> Chứng nhận giao dịch an toàn!</p>
                  </div>
+                 </div>
+                 <!-- thanh toán với vnpay -->
+                 <div class="payment-vnpay" style="display: none; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                     <h2 style="text-align: center; color: #007bff;">Thanh toán với VNPay</h2>
+                     <form action="{{ route('payment.vnpay') }}" method="POST" class="payment-form" style="display: flex; flex-direction: column; gap: 15px;">
+                         @csrf
+                         <label for="amount" style="font-weight: bold;">Số tiền (VND):</label>
+                         <input type="number" id="amount" name="amount" required min="10000" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
 
-              <!-- thanh toán với vnpay -->
-              <h2>Thanh toán với VNPay</h2>
+                         <label for="bank_code" style="font-weight: bold;">Chọn ngân hàng:</label>
+                         <select id="bank_code" name="bank_code" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                             <option value="">Không chọn</option>
+                         </select>
 
-    <form action="{{ route('payment.vnpay') }}" method="POST" class="payment-form">
-        @csrf
-        <label>Số tiền (VND):</label>
-        <input type="number" name="amount" required min="10000">
-
-        <label>Chọn ngân hàng:</label>
-        <select name="bank_code">
-            <option value="">Không chọn</option>
-            <option value="NCB">NCB</option>
-            <option value="AGRIBANK">Agribank</option>
-            <option value="VIETINBANK">Vietinbank</option>
-            <option value="VIETCOMBANK">Vietcombank</option>
-        </select>
-
-        <button type="submit">Thanh toán qua VNPay</button>
-    </form>
+                         <button type="submit" style="padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: background-color 0.3s;">
+                             Thanh toán qua VNPay
+                         </button>
+                     </form>
+                 </div>
 
              </div>
              <script>
+                 document.addEventListener('DOMContentLoaded', function() {
+                     fetchBanks();
+                 });
+
+                 function fetchBanks() {
+                     fetch('https://api.vietqr.io/v2/banks')
+                         .then(response => response.json())
+                         .then(data => {
+                             const bankSelect = document.getElementById('bank_code');
+                             data.data.forEach(bank => {
+                                 const option = document.createElement('option');
+                                 option.value = bank.code;
+                                 option.textContent = bank.shortName;
+                                 bankSelect.appendChild(option);
+                             });
+                         })
+                         .catch(error => console.error('Error fetching banks:', error));
+                 }
+
                  function openPaymentForm(id) {
                      let buttons = document.querySelectorAll('.payment-method');
+                     let paymentQR = document.querySelector('.payment-qr');
+                     let paymentVNPay = document.querySelector('.payment-vnpay');
 
                      buttons.forEach(button => {
                          if (button.getAttribute('data-id') == id) {
@@ -244,6 +255,14 @@
                              button.style.backgroundColor = '#007bff';
                          }
                      });
+
+                     if (id == 2) {
+                         paymentQR.style.display = 'none';
+                         paymentVNPay.style.display = 'block';
+                     } else {
+                         paymentQR.style.display = 'block';
+                         paymentVNPay.style.display = 'none';
+                     }
                  }
              </script>
              @endif

@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\services\adminService;
+use Illuminate\Support\Facades\Auth;
 class paymentcontroller extends Controller
 {
+    protected $adminService;
+
+    public function __construct(adminService $adminService)
+    {
+        $this->adminService = $adminService;
+    }
+
     public function createPayment(Request $request)
     {
         $vnp_TmnCode = env('VNP_TMN_CODE'); 
@@ -64,35 +72,46 @@ class paymentcontroller extends Controller
     }
 
     public function paymentReturn(Request $request)
-{
-    $vnp_HashSecret = env('VNP_HASH_SECRET'); 
-    $inputData = $request->all();
+    {
+        $vnp_HashSecret = env('VNP_HASH_SECRET'); 
+        $inputData = $request->all();
 
-    $vnp_SecureHash = $inputData['vnp_SecureHash'];
-    unset($inputData['vnp_SecureHash']);
-    ksort($inputData);
-    
-    $hashData = "";
-    $i = 0;
-    foreach ($inputData as $key => $value) {
-        if ($i == 1) {
-            $hashData .= '&' . urlencode($key) . "=" . urlencode($value);
+        $vnp_SecureHash = $inputData['vnp_SecureHash'];
+        unset($inputData['vnp_SecureHash']);
+        ksort($inputData);
+        
+        $hashData = "";
+        $i = 0;
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashData .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashData .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+        }
+
+        $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
+
+        if ($secureHash === $vnp_SecureHash) { 
+            if ($request->vnp_ResponseCode == "00") {
+               try {
+                 
+                    $this->adminService->addLinhThach([
+                        'name' => Auth()->user()->name,
+                        'email' => Auth()->user()->email, 
+                        'linh_thach' => $request->vnp_Amount / 100000, 
+                    ]);
+                } catch (\Exception $e) {
+                    return view('vnpay_return', ['status' => 'error', 'message' => 'Dữ liệu không hợp lệ!']);
+                }
+
+                return view('vnpay_return', ['status' => 'success', 'message' => 'Thanh toán thành công!']);
+            } else {
+                return view('vnpay_return', ['status' => 'fail', 'message' => 'Thanh toán thất bại!']);
+            }
         } else {
-            $hashData .= urlencode($key) . "=" . urlencode($value);
-            $i = 1;
+            return view('vnpay_return', ['status' => 'error', 'message' => 'Dữ liệu không hợp lệ!']);
         }
     }
-
-    $secureHash = hash_hmac('sha512', $hashData, $vnp_HashSecret);
-
-    if ($secureHash === $vnp_SecureHash) { 
-        if ($request->vnp_ResponseCode == "00") {
-            return view('vnpay_return', ['status' => 'success', 'message' => 'Thanh toán thành công!']);
-        } else {
-            return view('vnpay_return', ['status' => 'fail', 'message' => 'Thanh toán thất bại!']);
-        }
-    } else {
-        return view('vnpay_return', ['status' => 'error', 'message' => 'Dữ liệu không hợp lệ!']);
-    }
-}
 }

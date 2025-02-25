@@ -52,7 +52,7 @@ class chaptercontroller extends Controller
 
         $dmcategory = $this->category->allcategory();
 
-        $boolpurchased = null; // Khởi tạo giá trị mặc định là null
+        $boolpurchased = null; 
 
         if (Auth::check()) {
             $users_id =  $this->userService->getUserId();
@@ -69,17 +69,10 @@ class chaptercontroller extends Controller
 
     public function grant_linhthach(Request $request)
     {
-        $user_grant = $this->userService->getUserId();  // Changed from UserRepository
-
-        // Insert grant record
-        $this->chapterService->createGrantRecord($request, $user_grant);  // Changed from chapterRepository
-
-        // Update linh thach for the granting user and recipient
-        $this->chapterService->updateUserLinhThach($user_grant, $request->to_users_id, $request['linhthach_grant']);  // Changed from chapterRepository
-
-        // Send emails
-        $this->chapterService->sendEmails($request, $user_grant);  // Changed from chapterRepository
-
+        $user_grant = $this->userService->getUserId();  
+        $this->chapterService->createGrantRecord($request, $user_grant); 
+        $this->chapterService->updateUserLinhThach($user_grant, $request->to_users_id, $request['linhthach_grant']); 
+        $this->chapterService->sendEmails($request, $user_grant);
         return response()->json(['message' => 'Linh thach granted successfully.'], 200);
     }
 }

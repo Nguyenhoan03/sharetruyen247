@@ -3,7 +3,6 @@
 namespace App\services;
 
 use Illuminate\Support\Facades\DB;
-use Mail;
 use App\Jobs\SendMailJob;
 class billingService
 {

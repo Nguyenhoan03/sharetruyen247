@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\services\homeService;
+use App\services\HomeService;
 use App\services\categoryService;
 use App\services\userService;
 use Illuminate\Support\Facades\Session;

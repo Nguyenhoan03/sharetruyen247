@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Services\homeService;
+use App\Services\HomeService;
 use Illuminate\Support\Facades\DB;
 
 class IndexStories extends Command
@@ -13,7 +13,7 @@ class IndexStories extends Command
 
     protected $homeService;
 
-    public function __construct(homeService $homeService)
+    public function __construct(HomeService $homeService)
     {
         parent::__construct();
         $this->homeService = $homeService;

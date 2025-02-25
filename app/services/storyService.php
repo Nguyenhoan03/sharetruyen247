@@ -3,10 +3,7 @@
 namespace App\services;
 
 use Illuminate\Support\Facades\DB;
-use SebastianBergmann\Type\VoidType;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Redis;
-// use Illuminate\Support\Facades\Session;
 class storyService
 {
     public function getUserStories($userId)
@@ -120,9 +117,7 @@ class storyService
     }
     private function clearRelatedCache($productId): void
 {
-    $redis = Redis::connection();
-    
-    // Lấy thông tin category của sản phẩm
+    $cache = Cache::connection();
     $product = DB::table('product')
         ->where('id', $productId)
         ->first();
@@ -131,9 +126,9 @@ class storyService
     $categories = $this->getProductCategories($product);
     foreach ($categories as $category) {
         $pattern = "category:{$category}:page:*";
-        $keys = $redis->keys($pattern);
+        $keys = $cache->keys($pattern);
         foreach ($keys as $key) {
-            $redis->del($key);
+            $cache->del($key);
         }
     }
 }

@@ -3,8 +3,6 @@
 namespace App\services;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Config;
-use Elasticsearch\ClientBuilder;
 
 class homeService
 {   

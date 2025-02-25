@@ -1,20 +1,11 @@
 <?php
 namespace App\services;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\DB;
   class danhmucService{
     public function data_pageCategory($title_category)
     {
-        $redis = Redis::connection();
         $currentPage = request()->get('page', 1);
-        $cacheKey = "category:{$title_category}:page:{$currentPage}";
-        
-        // Kiểm tra cache
-        if ($redis->exists($cacheKey)) {
-            return unserialize($redis->get($cacheKey));
-        }
-        
-      
+    
         $data = DB::table('product')
             ->join('detail_product', 'product.title', '=', 'detail_product.title')
             ->join('chapter', function ($join) {
@@ -29,9 +20,6 @@ use Illuminate\Support\Facades\DB;
             ->orderBy('product.id', 'DESC')
             ->paginate(30);
     
-       
-        $redis->setex($cacheKey, 3600, serialize($data));
-       
         return $data;
     }
     

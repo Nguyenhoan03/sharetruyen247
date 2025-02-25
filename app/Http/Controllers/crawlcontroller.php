@@ -25,35 +25,12 @@ class crawlcontroller extends Controller
         });
     
         foreach ($title as $key => $value) {
-          
             $existingProduct = product::where('title', $value)->first();
-         
             if (!$existingProduct) {
                 product::insert([
                     'title' => $value,
                     'image' => $image[$key],
-                    // 'tienhiep' => 0,
-                    // 'ngontinh' => 0,
-                    // 'quantruong' => 0,
-                    // 'khoanguyen' => 0,
-                    // 'huyenhuyen' => 0,
-                    // 'dinang' => 0,
-                    // 'kiemhiep' => 0,
-                    // 'dammy' => 0,
-                    // 'vongdu' => 0,
-                    // 'haihuoc' => 0,
-                    // 'kinhdi' => 0,
-                    // 'dothi' => 1,
-                    // 'lichsu' => 0,
-                    // 'truyenma' => 0,
-                    // 'truyenngan' => 0,
-                    // 'tieuthuyet' => 0,
-                    // 'truyenteen' => 0,
-                    // 'quansu' => 0,
-                    // 'xuyenkhong' => 0,
-                    // 'trinhtham' => 0,
                     $url_category => 1,
-                  
                     'trang_thai' => 'đã duyệt',
                 ]);
     

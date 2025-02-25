@@ -3,8 +3,6 @@
 namespace App\services;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-use SebastianBergmann\Type\VoidType;
 use Illuminate\Http\Request;
 use App\Jobs\SendMailJob;
 class chapterService
