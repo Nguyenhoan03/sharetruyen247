@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-    Admincontroller,
-    Homecontroller,
-    Chatcontroller,
+    AdminController,
+    HomeController,
+    ChatController,
     crawlcontroller,
-    Storyusercontroller,
+    StoryUserController,
     danhmuccategorycontroller,
     detailcontroller,
     chaptercontroller,
@@ -40,7 +40,7 @@ Route::group(['prefix' => 'crawler'], function () {
 
 
 Route::group(['prefix' => 'pageadmin','middleware' => 'checklogin'], function() {
-    Route::controller(Admincontroller::class)->group(function () {
+    Route::controller(AdminController::class)->group(function () {
         Route::get('/', 'dashboardadmin');
         Route::get('/thong_tin_user', 'thong_tin_user');
         Route::get('/lich_su_nap_linh_thach_user', 'lich_su_nap_linh_thach_user');
@@ -56,7 +56,7 @@ Route::group(['prefix' => 'pageadmin','middleware' => 'checklogin'], function() 
 
 
 Route::group(['prefix' => 'author'], function () {
-    Route::controller(Homecontroller::class)->group(function () {
+    Route::controller(HomeController::class)->group(function () {
         Route::get('/loginuser', 'loginuser');
         Route::get('/registeruser', 'registeruser');
         Route::post('/postregisteruser', 'postregisteruser');
@@ -94,10 +94,9 @@ Route::group(['prefix' => 'story_user', 'middleware' => 'checklogin'], function 
 
 
 Route::group(['middleware' => 'checklogin'], function () {
-    Route::get('/roomchat', [Chatcontroller::class, 'index']);
-    Route::post('/send', [Chatcontroller::class, 'send']);
+    Route::get('/roomchat', [ChatController::class, 'index']);
+    Route::post('/send', [ChatController::class, 'send']);
 });
-
 
 
 Route::controller(danhmuccategorycontroller::class)->group(function () {
@@ -138,8 +137,8 @@ Route::controller(danhmuccategorycontroller::class)->group(function () {
 Route::post('/payment/vnpay', [paymentcontroller::class, 'createPayment'])->name('payment.vnpay');
 Route::get('/payment/vnpay-return', [paymentcontroller::class, 'paymentReturn'])->name('payment.vnpay.return');
 Route::post('/grant_linhthach', [chaptercontroller::class, 'grant_linhthach']);
-Route::get('/', [Homecontroller::class, 'index']);
-Route::get('/search', [Homecontroller::class, 'search']);
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/search', [HomeController::class, 'search']);
 Route::get('/{title}', [detailcontroller::class, 'index']);
 Route::get('/{title}/{chapter}', [chaptercontroller::class, 'index']);
 

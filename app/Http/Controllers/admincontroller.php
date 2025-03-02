@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\services\adminService;
-use App\services\userService;
+use App\services\UserService;
 use App\services\storyService;
 use Illuminate\Support\Facades\Session;
 
@@ -14,7 +14,7 @@ class AdminController extends Controller
     protected $userService;
     protected $storyService;
 
-    public function __construct(adminService $adminService, userService $userService, storyService $storyService)
+    public function __construct(adminService $adminService, UserService $userService, storyService $storyService)
     {
         $this->adminService = $adminService;
         $this->userService = $userService;

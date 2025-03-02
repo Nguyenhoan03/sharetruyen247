@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\services\HomeService;
-use App\services\categoryService;
-use App\services\userService;
+use App\services\CategoryService;
+use App\services\UserService;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 

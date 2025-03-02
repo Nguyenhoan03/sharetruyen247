@@ -34,15 +34,7 @@
     <link rel="stylesheet" href="{{asset('/assets/app.css')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script data-cfasync='false' src='//wwr.hlinit.com/?tag=1e572c05'></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QH7RWSDBDK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-QH7RWSDBDK');
-</script>
 <style>
     .payment-container {
     padding: 20px;

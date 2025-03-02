@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\detail_product;
+
 use App\Models\chapter;
 use App\Repositories\basecategoryInterface;
 use Illuminate\Support\Facades\DB as DB;;
@@ -21,7 +20,6 @@ class detailcontroller extends Controller
     {
         $this->category = $basecategory;
     }
-
     public function index($title)
     {
         $data = DB::table('detail_product')
@@ -29,7 +27,6 @@ class detailcontroller extends Controller
             ->join('product', 'detail_product.title', '=', 'product.title')
             ->select('detail_product.*', 'product.image')
             ->first();
-
         $datachapter = chapter::where('title', $title)->paginate(30);
 
         $dmcategory = $this->category->allcategory();

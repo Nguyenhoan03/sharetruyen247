@@ -18,5 +18,8 @@ class chapter extends Model
       'content',
       'chapter',
       'form_doc',
+      'slug'
     ];
+
+  
 }

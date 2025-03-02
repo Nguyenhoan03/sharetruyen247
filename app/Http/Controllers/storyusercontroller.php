@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\services\storyService;
 use App\services\chapterService;
 use App\services\billingService;
-use App\services\userService;
+use App\services\UserService;
 use Illuminate\Support\Facades\Session;
 
 class StoryUserController extends Controller

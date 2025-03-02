@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Repositories\basecategoryInterface;
-use App\services\userService;
+use App\services\UserService;
 use App\services\chapterService;
 use Illuminate\Support\Facades\DB as DB;;
 
