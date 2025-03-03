@@ -33,8 +33,7 @@
     <link rel="shortcut icon" href="https://suustore.com/assets/frontend/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('/assets/app.css')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script data-cfasync='false' src='//wwr.hlinit.com/?tag=1e572c05'></script>
-
+   
 <style>
     .payment-container {
     padding: 20px;
@@ -81,7 +80,7 @@
                             <div class="section-stories-hot__list">
                             @foreach($truyenhot as $th)
         <div class="story-item">
-            <a href="/{{$th->title}}" class="d-block text-decoration-none">
+        <a href="{{ $th->slug ? route('story.detail', ['slug' => $th->slug]) : '#' }}" class="d-block text-decoration-none">
                 <div class="story-item__image">
                     <!-- <img loading="lazy" src="{{ $th->image }}" alt="" class="img-fluid" width="150" height="230" loading="lazy"> -->
                     @if (Str::startsWith($th->image, 'https://') || Str::startsWith($th->image, 'http://'))
@@ -93,7 +92,6 @@
         @endif
                 </div>
                 <h3 class="story-item__name text-one-row story-name">{{ $th->title }}</h3>
-
                 <div class="list-badge">
                     <span class="story-item__badge badge text-bg-success">{{ $th->trangthai }}</span>
 
@@ -163,7 +161,7 @@
                                                         d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
                                                     </path>
                                                 </svg>  
-                                                <a href="/{{$tm->title}}"
+                                                <a href="{{ $tm->slug ? route('story.detail', ['slug' => $tm->slug]) : '#' }}"
                                                     class="text-decoration-none text-dark fs-6 hover-title text-one-row story-name"> {{ $tm->title}}</a>
                                             </h3>
                                             <span class="badge text-bg-info text-light me-1">New</span>
@@ -187,8 +185,8 @@
                                         </div>
 
                                         <div class="story-item-no-image__chapters ms-2">
-                                            <a href="/{{$tm->title}}/{{$tm->chapter}}" class="hover-title text-decoration-none text-info">
-                                                {{$tm->chapter}}</a>
+                                            <a href="{{ $tm->slug ? route('story.chapter', ['slug' => $tm->slug, 'chapter' => $tm->chapter]) : '#' }}" 
+                                                class="hover-title text-decoration-none text-info">{{$tm->chapter}}</a>
                                         </div>
 
 
@@ -317,7 +315,7 @@
                         <div class="section-stories-full__list">
                             @foreach( $truyenfull as $tf)
                             <div class="story-item-full text-center">
-                                <a href="/{{$tf->title}}" class="d-block story-item-full__image">
+                                <a href="{{ $tf->slug ? route('story.detail', ['slug' => $tf->slug]) : '#' }}" class="d-block story-item-full__image">
                                    
                                         @if (Str::startsWith($tf->image, 'https://') || Str::startsWith($tf->image, 'http://'))
         {{-- Nếu đường dẫn bắt đầu bằng 'https://' hoặc 'http://', đây là URL trực tiếp --}}
@@ -328,7 +326,7 @@
     @endif
                                 </a>
                                 <h3 class="fs-6 story-item-full__name fw-bold text-center mb-0">
-                                    <a href="/{{$tf->title}}"
+                                    <a href="{{ $tf->slug ? route('story.detail', ['slug' => $tf->slug]) : '#' }}"
                                         class="text-decoration-none text-one-row story-name">
                                         {{$tf->title}}
                                     </a>

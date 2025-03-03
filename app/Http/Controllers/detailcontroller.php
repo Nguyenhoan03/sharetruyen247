@@ -20,20 +20,22 @@ class detailcontroller extends Controller
     {
         $this->category = $basecategory;
     }
-    public function index($title)
+    public function index($slug)
     {
         $data = DB::table('detail_product')
-            ->where('detail_product.title', $title)
+            ->where('detail_product.slug', $slug)
             ->join('product', 'detail_product.title', '=', 'product.title')
             ->select('detail_product.*', 'product.image')
             ->first();
-        $datachapter = chapter::where('title', $title)->paginate(30);
-
+        if (!$data) {
+            abort(404);
+        }
+        $datachapter = chapter::where('title_slug', $slug)->paginate(30);
         $dmcategory = $this->category->allcategory();
-        $viewers = DB::table('detail_product')->where('title', $title)->first();
+        $viewers = DB::table('detail_product')->where('slug', $slug)->first();
 
         if ($viewers) {
-            DB::table('detail_product')->where('title', $title)->increment('viewers');
+            DB::table('detail_product')->where('slug', $slug)->increment('viewers');
         }
         return view('story', compact('data', 'datachapter', 'dmcategory'));
     }

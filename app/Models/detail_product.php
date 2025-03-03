@@ -15,6 +15,7 @@ class detail_product extends Model
     protected $guarded = [];
     protected $fillable  = [
       'title',
+      'slug',
       'descripts',
       'tacgia',
       'theloai',
