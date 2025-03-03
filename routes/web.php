@@ -139,6 +139,6 @@ Route::get('/payment/vnpay-return', [paymentcontroller::class, 'paymentReturn'])
 Route::post('/grant_linhthach', [chaptercontroller::class, 'grant_linhthach']);
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/search', [HomeController::class, 'search']);
-Route::get('/{title}', [detailcontroller::class, 'index']);
-Route::get('/{title}/{chapter}', [chaptercontroller::class, 'index']);
+Route::get('/{slug}', [detailcontroller::class, 'index'])->name('story.detail');
+Route::get('/{slug}/{chapter}', [chaptercontroller::class, 'index'])->name('story.chapter');
 

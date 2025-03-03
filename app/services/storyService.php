@@ -4,6 +4,8 @@ namespace App\services;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
+
 class storyService
 {
     public function getUserStories($userId)
@@ -28,32 +30,41 @@ class storyService
     public function createStory($request, $userId)
     {
         $fileName = $this->uploadImage($request);
-
         $genres = $this->getGenres($request);
-
+        $title = $request->input('titletruyen');
+        $slug = Str::slug($title);
+    
+       
+        $activeGenres = array_filter($genres, function($value) {
+            return $value == 1;
+        });
+    
+        // Insert vào bảng product
         DB::table('product')->insert([
-            'title' => $request->input('titletruyen'),
+            'title' => $title,
+            'slug' => $slug,
             'image' => $fileName,
             'users_id' => $userId,
             'trang_thai' => 'chờ duyệt',
         ] + $genres);
-
+    
         $descripts = strip_tags($request->input('descripts'));
-
+    
+        
         DB::table('detail_product')->insert([
-            'title' => $request->input('titletruyen'),
+            'title' => $title,
+            'slug' => $slug,
             'descripts' => $descripts,
             'tacgia' => $request->input('tacgia'),
-            'theloai' => implode(", ", array_keys($genres)),
+            'theloai' => implode(", ", array_keys($activeGenres)),
             'nguon' => $request->input('truyen_type'),
             'trangthai' => $request->input('story-status'),
             'capnhatmoi' => '',
             'viewers' => 0,
         ]);
-
+    
         return true;
     }
-
     private function uploadImage($request)
     {
         if ($request->hasFile('fileInput')) {
@@ -106,48 +117,12 @@ class storyService
         foreach ($ids as $key => $id) {
             $trangThai = $trangThaiArray[$key];
             
-            // 1. Cập nhật database
+            // Cập nhật trạng thái trong database
             DB::table('product')
                 ->where('id', $id)
                 ->update(['trang_thai' => $trangThai]);
-    
-            // 2. Xóa cache liên quan
-            $this->clearRelatedCache($id);
         }
     }
-    private function clearRelatedCache($productId): void
-{
-    $cache = Cache::connection();
-    $product = DB::table('product')
-        ->where('id', $productId)
-        ->first();
-    
-    // Xóa cache của các category liên quan
-    $categories = $this->getProductCategories($product);
-    foreach ($categories as $category) {
-        $pattern = "category:{$category}:page:*";
-        $keys = $cache->keys($pattern);
-        foreach ($keys as $key) {
-            $cache->del($key);
-        }
-    }
-}
-private function getProductCategories($product): array
-{
-    $categories = [];
-    $possibleCategories = [
-       'tienhiep', 'ngontinh', 'quantruong', 'khoanguyen', 'huyenhuyen', 'dinang', 'kiemhiep', 'dammy', 'vongdu', 'haihuoc', 'kinhdi', 'dothi', 'lichsu', 'truyenma', 'truyenngan', 'tieuthuyet', 'truyenteen', 'quansu', 'xuyenkhong', 'trinhtham'
-    ];
-    
-    foreach ($possibleCategories as $category) {
-        if ($product->$category == 1) {
-            $categories[] = $category;
-        }
-    }
-    
-    return $categories;
-}
-
 
     public function getChaptersByTitle($title){
         $data = DB::table('chapter')
@@ -180,80 +155,61 @@ private function getProductCategories($product): array
         $file_name1 = '';
         $descripts = "";
     
-     
         $product = DB::table('product')->where('title', $title)->first();
         if (!$product) {
             return false;
         }
     
-
+        // Xử lý upload ảnh
         if ($request->hasFile('fileInput')) {
             $file1 = $request->file('fileInput');
             $file_name1 = $file1->getClientOriginalName();
             $file1->move(public_path('upload'), $file_name1);
         } else {
-          
             $file_name1 = $product->image;
         }
     
-       
-        $genres = $request->only([
-            'tienhiep', 'ngontinh', 'quantruong', 'khoanguyen', 'huyenhuyen', 'dinang',
-            'kiemhiep', 'dammy', 'vongdu', 'haihuoc', 'kinhdi', 'dothi', 'lichsu', 
-            'truyenma', 'truyenngan', 'tieuthuyet', 'truyenteen', 'quansu', 'xuyenkhong', 'trinhtham'
-        ]);
+        $genres = $this->getGenres($request);
+        $newTitle = $request->input('titletruyen');
+        $newSlug = Str::slug($newTitle); // Tạo slug mới từ title mới
     
-     
-        $genreKeys = array_keys(array_filter($genres));
-    
- 
+        // Update bảng product
         DB::table('product')
             ->where('title', $title)
             ->update([
-                'title' => $request->input('titletruyen'),
+                'title' => $newTitle,
+                'slug' => $newSlug,
                 'image' => $file_name1,
-              
-                'tienhiep' => isset($genres['tienhiep']) ? 1 : 0,
-                'ngontinh' => isset($genres['ngontinh']) ? 1 : 0,
-                'quantruong' => isset($genres['quantruong']) ? 1 : 0,
-                'khoanguyen' => isset($genres['khoanguyen']) ? 1 : 0,
-                'huyenhuyen' => isset($genres['huyenhuyen']) ? 1 : 0,
-                'dinang' => isset($genres['dinang']) ? 1 : 0,
-                'kiemhiep' => isset($genres['kiemhiep']) ? 1 : 0,
-                'dammy' => isset($genres['dammy']) ? 1 : 0,
-                'vongdu' => isset($genres['vongdu']) ? 1 : 0,
-                'haihuoc' => isset($genres['haihuoc']) ? 1 : 0,
-                'kinhdi' => isset($genres['kinhdi']) ? 1 : 0,
-                'dothi' => isset($genres['dothi']) ? 1 : 0,
-                'lichsu' => isset($genres['lichsu']) ? 1 : 0,
-                'truyenma' => isset($genres['truyenma']) ? 1 : 0,
-                'truyenngan' => isset($genres['truyenngan']) ? 1 : 0,
-                'tieuthuyet' => isset($genres['tieuthuyet']) ? 1 : 0,
-                'truyenteen' => isset($genres['truyenteen']) ? 1 : 0,
-                'quansu' => isset($genres['quansu']) ? 1 : 0,
-                'xuyenkhong' => isset($genres['xuyenkhong']) ? 1 : 0,
-                'trinhtham' => isset($genres['trinhtham']) ? 1 : 0,
                 'users_id' => $userId,
-            ]);
+            ] + $genres);
     
-       
         if ($request->has('descripts')) {
             $descripts = strip_tags($request->input('descripts'));
         }
     
-     
+        // Update bảng detail_product
         DB::table('detail_product')
             ->where('title', $title)
             ->update([
-                'title' => $request->input('titletruyen'),
+                'title' => $newTitle,
+                'slug' => $newSlug,
                 'descripts' => $descripts,
                 'tacgia' => $request->input('tacgia'),
-                'theloai' => implode(", ", $genreKeys), 
+                'theloai' => implode(", ", array_keys($genres)),
                 'nguon' => $request->input('truyen_type'),
                 'trangthai' => $request->input('story-status'),
-                'capnhatmoi' => '', 
-                'viewers' => 0, 
+                'capnhatmoi' => '',
             ]);
+    
+        // Update bảng chapter nếu title thay đổi
+        if ($title !== $newTitle) {
+            DB::table('chapter')
+                ->where('title', $title)
+                ->update([
+                    'title' => $newTitle,
+                    'title_slug' => $newSlug
+                ]);
+        }
     
         return true;
     }

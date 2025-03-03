@@ -15,10 +15,14 @@ class chapter extends Model
     protected $guarded = [];
     protected $fillable  = [
       'title',
+      'title_slug',
+      'chapter_slug',
       'content',
       'chapter',
       'form_doc',
-      'slug'
+      'slug',
+      'title_slug',
+      'chapter_slug',
     ];
 
   

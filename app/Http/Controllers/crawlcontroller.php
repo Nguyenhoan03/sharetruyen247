@@ -6,13 +6,14 @@ use Goutte;
 use App\Models\product;
 use App\Models\detail_product;
 use App\Models\chapter;
+use Illuminate\Support\Str;
 
 class crawlcontroller extends Controller
 {
    
     public function scrapeMainPage($category)
     {
-        $url = "https://dtruyen.net/$category";
+        $url = "https://doctruyen.pro/the-loai/$category";
         $url_category = str_replace('-','',$category);
         $crawler = Goutte::request('GET', $url);
     
@@ -29,12 +30,11 @@ class crawlcontroller extends Controller
             if (!$existingProduct) {
                 product::insert([
                     'title' => $value,
+                    'slug' => Str::slug($value),
                     'image' => $image[$key],
                     $url_category => 1,
                     'trang_thai' => 'đã duyệt',
                 ]);
-    
-              
                 sleep(1);
     
                 $link = $crawler->filter('li.story-list .info h3.title a')->eq($key)->attr('href');
@@ -70,7 +70,8 @@ class crawlcontroller extends Controller
         $trangthai = $trangthaiNode->count() > 0 ? $trangthaiNode->text() : 'Not available';
     
         $data = [
-            'title'=>$title,
+            'title' => $title,
+            'slug' => Str::slug($title),
             'descripts' => $descripts,
             'tacgia' => $tacgia,
             'theloai' => $theloai,
@@ -115,7 +116,6 @@ class crawlcontroller extends Controller
             sleep(1);
         }
     }
-    
     public function scrapechapter($linkchapter, $title)
     {
         $datachapter = [];
@@ -129,8 +129,10 @@ class crawlcontroller extends Controller
     
         $datachapter = [
             'title' => $title,
+            'title_slug' => Str::slug($title),
             'content' => $content,
             'chapter' => $chapter,
+            'chapter_slug' => Str::slug($chapter),
         ];
         chapter::create($datachapter);
         sleep(2);

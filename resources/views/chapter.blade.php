@@ -75,7 +75,7 @@
                 <div class="chapter-actions chapter-actions-origin d-flex align-items-center justify-content-center">
               
                 @if($previouschapter)
-    <a class="btn btn-success me-1 chapter-prev" href="/{{$data->title}}/{{$previouschapter->chapter}}" title=""><span>Chương </span>trước</a>
+    <a class="btn btn-success me-1 chapter-prev" href="{{$story->slug && $previouschapter->chapter_slug ? route('story.chapter', ['slug' => $story->slug, 'chapter' => $previouschapter->chapter_slug]) : '#'}}" title=""><span>Chương </span>trước</a>
 @else
     <a style="background-color:black" class="btn btn-success me-1 chapter-prev" href="#" title=""><span>Chương </span>trước</a>
 @endif
@@ -104,7 +104,7 @@
                         </ul>
                     </div>
                     @if($nextchapter)
-    <a class="btn btn-success chapter-next" href="/{{$data->title}}/{{$nextchapter->chapter}}" title=""><span>Chương </span>tiếp</a>
+    <a class="btn btn-success chapter-next" href="{{$story->slug && $nextchapter->chapter_slug ? route('story.chapter', ['slug' => $story->slug, 'chapter' => $nextchapter->chapter_slug]) : '#'}}" title=""><span>Chương </span>tiếp</a>
 @else
     <a style="background-color:black" class="btn btn-success chapter-next" href="#" title=""><span>Hết </span>chapter</a>
 @endif

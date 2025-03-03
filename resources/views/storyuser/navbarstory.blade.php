@@ -1,4 +1,3 @@
-<script data-cfasync='false' src='//wwr.hlinit.com/?tag=1e572c05'></script>
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
   <aside class="app-sidebar">
     <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://img.dtruyen.com/limitless/images/demo/users/face1.jpg" width="50px"

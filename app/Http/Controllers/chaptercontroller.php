@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use App\Repositories\basecategoryInterface;
 use App\services\UserService;
 use App\services\chapterService;
-use Illuminate\Support\Facades\DB as DB;;
+use Illuminate\Support\Facades\DB as DB;
+use Illuminate\Support\Facades\Auth;
 
 use Mail;
-use Auth;
 
 class chaptercontroller extends Controller
 {
@@ -30,43 +30,66 @@ class chaptercontroller extends Controller
         $this->userService = $userService;
         $this->chapterService = $chapterService;
     }
-    public function index($title, $chapter)
+    public function index($slug, $chapter_slug)
     {
-        $data = DB::table('product')
-            ->join('chapter', 'product.title', '=', 'chapter.title')
-            ->where('product.title', $title)
-            ->where('chapter.chapter', $chapter)
+        // Find story by slug
+        $story = DB::table('detail_product')
+            ->where('slug', $slug)
             ->first();
-
+        
+        if (!$story) {
+            abort(404);
+        }
+        
+        // Find chapter using both story slug and chapter slug
+        $data = DB::table('product')
+            ->join('chapter', 'product.slug', '=', 'chapter.title_slug')
+            ->where('chapter.title_slug', $slug)
+            ->where('chapter.chapter_slug', $chapter_slug)
+            ->first();
+        
+        if (!$data) {
+            abort(404);
+        }
+    
+        // Get next chapter
         $nextchapter = DB::table('chapter')
-            ->where('title', $title)
+            ->where('title_slug', $slug)
             ->where('chapter.id', '>', $data->id)
             ->orderBy('chapter.id', 'ASC')
+            ->select('chapter.*', 'chapter_slug') 
             ->first();
-
+    
+        // Get previous chapter
         $previouschapter = DB::table('chapter')
-            ->where('title', $title)
+            ->where('title_slug', $slug)
             ->where('chapter.id', '<', $data->id)
             ->orderBy('chapter.id', 'DESC')
+            ->select('chapter.*', 'chapter_slug') 
             ->first();
-
+    
         $dmcategory = $this->category->allcategory();
-
-        $boolpurchased = null; 
-
+    
+        
+        $boolpurchased = null;
         if (Auth::check()) {
-            $users_id =  $this->userService->getUserId();
+            $users_id = $this->userService->getUserId();
             $boolpurchased = DB::table('purchased_products')
-                ->where('title', $title)
-                ->where('chapter', $chapter)
+                ->where('title', $story->title)
+                ->where('chapter', $data->chapter)
                 ->where('users_id', $users_id)
                 ->first();
         }
-
-
-        return view('chapter', compact('data', 'nextchapter', 'previouschapter', 'dmcategory', 'boolpurchased'));
+    
+        return view('chapter', compact(
+            'data', 
+            'nextchapter', 
+            'previouschapter', 
+            'dmcategory', 
+            'story',
+            'boolpurchased'
+        ));
     }
-
     public function grant_linhthach(Request $request)
     {
         $user_grant = $this->userService->getUserId();  

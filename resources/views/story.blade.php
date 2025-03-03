@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-     <title>truyenhay247 - {{$data->title}}</title>
+    <title>truyenhay247 - {{$data->title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,55 +12,60 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
- 
+
+
 
     <link href="{{asset('assets/bootstrap.min.css')}}" rel="stylesheet">
 
     <link rel="shortcut icon" href="https://suustore.com/assets/frontend/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('/assets/app.css')}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-   
-<style>
-    .payment-container {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 20px auto;
-    max-width: 600px;
-}
 
-.payment-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+    <style>
+        .payment-container {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
 
-.payment-info, .payment-methods, .payment-qr, .payment-note, .payment-security {
-    margin-bottom: 20px;
-}
+        .payment-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-.user-info {
-    display: inline-block;
-}
+        .payment-info,
+        .payment-methods,
+        .payment-qr,
+        .payment-note,
+        .payment-security {
+            margin-bottom: 20px;
+        }
 
-.payment-method, .payment-note p {
-    margin: 5px 0;
-}
+        .user-info {
+            display: inline-block;
+        }
 
-.payment-security img {
-    vertical-align: middle;
-    margin-right: 10px;
-}
-.payment-container{
-    display: none;
-}
+        .payment-method,
+        .payment-note p {
+            margin: 5px 0;
+        }
 
-</style>
+        .payment-security img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .payment-container {
+            display: none;
+        }
+    </style>
     </header>
 
 <body>
-@include('header')
+    @include('header')
 
 
     <main>
@@ -84,14 +89,14 @@
                             <div class="row align-items-start">
                                 <div class="col-12 col-md-12 col-lg-3 story-detail__top--image">
                                     <div class="book-3d">
-                                      
-@if ($data && (Str::startsWith($data->image, 'https://') || Str::startsWith($data->image, 'http://')))
-    <img loading="lazy" src="{{ $data->image }}" alt="" class="img-fluid" width="150" height="230" loading="lazy">
-@elseif ($data)
-    <img loading="lazy" src="{{ asset('upload/' . $data->image) }}" alt="" class="img-fluid" width="150" height="230" loading="lazy">
-@else
-    <p>No image data available.</p>
-@endif
+
+                                        @if ($data && (Str::startsWith($data->image, 'https://') || Str::startsWith($data->image, 'http://')))
+                                        <img loading="lazy" src="{{ $data->image }}" alt="" class="img-fluid" width="150" height="230" loading="lazy">
+                                        @elseif ($data)
+                                        <img loading="lazy" src="{{ asset('upload/' . $data->image) }}" alt="" class="img-fluid" width="150" height="230" loading="lazy">
+                                        @else
+                                        <p>No image data available.</p>
+                                        @endif
 
 
 
@@ -210,7 +215,7 @@
                                             </a>
 
 
-                                           
+
                                         </div>
                                     </div>
 
@@ -233,7 +238,7 @@
                             </div>
                         </div>
 
-                        <div class="story-detail__list-chapter" >
+                        <div class="story-detail__list-chapter">
                             <div class="head-title-global d-flex justify-content-between mb-4">
                                 <div class="col-6 col-md-12 col-lg-4 head-title-global__left d-flex">
                                     <h2 class="me-2 mb-0 border-bottom border-secondary pb-1">
@@ -247,62 +252,26 @@
                             <div class="story-detail__list-chapter--list">
                                 <div class="row">
                                     <div class="col-12 col-sm-6 col-lg-6 story-detail__list-chapter--list__item">
-                                    <ul class="list-group" >
-                                        @foreach($datachapter as $chapter)
+                                        <ul class="list-group">
+                                            @foreach($datachapter as $chapter)
                                             <li class="list-group-item" style="width: 100%">
-                                                <a href="/{{$chapter->title}}/{{$chapter->chapter}}" class="text-decoration-none text-dark hover-title">
+                                                <a href="{{$data->slug && $chapter->chapter_slug ? route('story.chapter', ['slug' => $data->slug, 'chapter' => $chapter->chapter_slug]) : '#'}}" class="text-decoration-none text-dark hover-title">
                                                     {{ $chapter->chapter }}
                                                 </a>
                                             </li>
-                                        @endforeach
-                                    </ul>
+                                            @endforeach
+                                        </ul>
 
-                                    <!-- Hiển thị nút phân trang với Bootstrap styling -->
-                                    <div class="d-flex justify-content-center">
-                                        {{ $datachapter->onEachSide(2)->links('pagination::bootstrap-4') }}
-                                    </div>
-                                     
+                                        <!-- Hiển thị nút phân trang với Bootstrap styling -->
+                                        <div class="d-flex justify-content-center">
+                                            {{ $datachapter->onEachSide(2)->links('pagination::bootstrap-4') }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- <div class="pagination" style="justify-content: center;">
-                            <ul>
-                                <li class="pagination__item  page-current">
-                                    <a class="page-link story-ajax-paginate"
-                                        data-url="https://suustore.com/truyen/nang-khong-muon-lam-hoang-hau?page=1"
-                                        style="cursor: pointer;">1</a>
-                                </li>
-                                <li class="pagination__item ">
-                                    <a class="page-link story-ajax-paginate"
-                                        data-url="https://suustore.com/truyen/nang-khong-muon-lam-hoang-hau?page=2"
-                                        style="cursor: pointer;">2</a>
-                                </li>
-
-                                <div class="dropup-center dropup choose-paginate me-1">
-                                    <button class="btn btn-success dropdown-toggle" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Chọn trang
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <input type="number" class="form-control input-paginate me-1" value="">
-                                        <button class="btn btn-success btn-go-paginate">
-                                            Đi
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <li class="pagination__arrow pagination__item">
-                                    <a data-url="https://suustore.com/truyen/nang-khong-muon-lam-hoang-hau?page=2"
-                                        style="cursor: pointer;"
-                                        class="text-decoration-none w-100 h-100 d-flex justify-content-center align-items-center story-ajax-paginate">
-                                        &gt;&gt;
-                                    </a>
-                                </li>
-                            </ul>
-
-                        </div> -->
+                       
                     </div>
                 </div>
 
@@ -1238,25 +1207,30 @@
 
 
     <script>
-    function openPurchaseForm() {
-        // Kiểm tra xem người dùng đã đăng nhập hay chưa
-        if (!isAuthenticated()) {
-            // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
-            window.location.href = "/author/loginuser";
-        } else {
-            // Nếu đã đăng nhập, mở form mua linh thạch
-            document.querySelector(".payment-container").style.display = "block";
+        function openPurchaseForm() {
+            // Kiểm tra xem người dùng đã đăng nhập hay chưa
+            if (!isAuthenticated()) {
+                // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
+                window.location.href = "/author/loginuser";
+            } else {
+                // Nếu đã đăng nhập, mở form mua linh thạch
+                document.querySelector(".payment-container").style.display = "block";
+            }
         }
-    }
 
-    function isAuthenticated() {
-        // Kiểm tra xem người dùng đã đăng nhập hay chưa bằng cách sử dụng Auth::check()
-        return {{ Auth::check() ? 'true' : 'false' }};
-    }
+        function isAuthenticated() {
+            // Kiểm tra xem người dùng đã đăng nhập hay chưa bằng cách sử dụng Auth::check()
+            return {
+                {
+                    Auth::check() ? 'true' : 'false'
+                }
+            };
+        }
 
-    function closeForm() {
-        document.querySelector(".payment-container").style.display = "none";
-    }
-</script>
+        function closeForm() {
+            document.querySelector(".payment-container").style.display = "none";
+        }
+    </script>
 </body>
+
 </html>

@@ -55,7 +55,7 @@
                                                     </path>
                                                 </svg>
                                                 <img loading="lazy" src="{{$dt->image}}" style="width:15%;border-radius:7px" alt="">
-                                                <a href="/{{$dt->title}}"
+                                                <a href="/{{$dt->slug}}"
                                                     class="text-decoration-none text-dark fs-6 hover-title text-one-row story-name">
                                                     {{$dt->title}}</a>
                                             

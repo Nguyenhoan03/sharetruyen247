@@ -9,26 +9,30 @@ class homeService
    
     public function getHomePageData()
     {
-        $dmcategory = Cache::remember('dmcategory', 60 * 60, function () {
-            return $this->getCategories();
-        });
+        // $dmcategory = Cache::remember('dmcategory', 60 * 60, function () {
+        //     return $this->getCategories();
+        // });
     
-        $truyenhot = Cache::remember('truyenhot', 60 * 60, function () {
-            return $this->getHotStories();
-        });
+        // $truyenhot = Cache::remember('truyenhot', 60 * 60, function () {
+        //     return $this->getHotStories();
+        // });
     
-        $truyenmoi = Cache::remember('truyenmoi', 60 * 60, function () {
-            return $this->getNewStories();
-        });
+        // $truyenmoi = Cache::remember('truyenmoi', 60 * 60, function () {
+        //     return $this->getNewStories();
+        // });
     
-        $truyenfull = Cache::remember('truyenfull', 60 * 60, function () {
-            return $this->getCompletedStories();
-        });
+        // $truyenfull = Cache::remember('truyenfull', 60 * 60, function () {
+        //     return $this->getCompletedStories();
+        // });
     
-        $toptruyen = Cache::remember('toptruyen', 60 * 60, function () {
-            return $this->getTopStories();
-        });
-    
+        // $toptruyen = Cache::remember('toptruyen', 60 * 60, function () {
+        //     return $this->getTopStories();
+        // });
+            $dmcategory = $this->getCategories();
+            $truyenhot = $this->getHotStories();
+        $truyenmoi = $this->getNewStories();
+        $truyenfull = $this->getCompletedStories();
+        $toptruyen = $this->getTopStories();
         return compact('dmcategory', 'truyenhot', 'truyenmoi', 'truyenfull', 'toptruyen');
     }
 
@@ -42,13 +46,15 @@ class homeService
     private function getHotStories()
     {
         return DB::table('detail_product')
-            ->join('product', 'detail_product.title', '=', 'product.title')
-            ->select('detail_product.viewers', 'detail_product.trangthai', 'product.title', 'product.image')
+            ->join('product', 'detail_product.slug', '=', 'product.slug')
+            ->select('detail_product.viewers', 'detail_product.trangthai', 'product.title','product.slug', 'product.image')
             ->where('product.trang_thai', 'đã duyệt')
             ->orWhereNull('product.trang_thai')
             ->orderBy('detail_product.viewers', 'DESC')
             ->take(16)
             ->get();
+
+            
     }
 
     private function getNewStories()
@@ -61,7 +67,7 @@ class homeService
             })
             ->where('product.trang_thai', 'đã duyệt')
             ->orWhereNull('product.trang_thai')
-            ->select('product.title', 'detail_product.theloai', 'detail_product.trangthai', 'chapter.chapter')
+            ->select('product.title','product.slug', 'detail_product.theloai', 'detail_product.trangthai', 'chapter.chapter')
             ->orderBy('product.id', 'DESC')
             ->paginate(28);
     }
@@ -73,6 +79,7 @@ class homeService
             ->select(
                 'detail_product.trangthai',
                 'product.title',
+                'product.slug',
                 'product.image',
                 DB::raw('(SELECT COUNT(*) FROM chapter WHERE chapter.title = detail_product.title) as total_chapters')
             )
@@ -102,7 +109,6 @@ class homeService
 
     public function searchStories($search)
     {
-
         return DB::table('product')
             ->join('detail_product', 'product.title', '=', 'detail_product.title')
             ->join('chapter', function ($join) {
