@@ -3,22 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
-   <title>truyenhay247-Tổng hợp truyện xuyên không hay và mới nhất</title>
+    <title>truyenhay247-Tổng hợp truyện xuyên không hay và mới nhất</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="{{asset('assets/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('/assets/app.css')}}">
 </head>
 
 <body>
-@include('danhmuccategory.header')
+    @include('danhmuccategory.header')
 
-   
+
 
 
     <main>
         <div class="section-stories-hot mb-3">
             <div class="container">
-           
+
             </div>
         </div>
         <div class="container">
@@ -33,92 +33,51 @@
                                             class="d-block text-decoration-none text-dark fs-4 story-name"
                                             title="Truyện Mới">Truyện Xuyên Không</a>
                                     </h2>
-                                   
+
                                 </div>
                             </div>
-                          
+
                         </div>
-                       
+
                         <div class="contentdm">
                             <div class="button-container">
-                            <button onclick="handlefull()">truyện xuyên không full</button>
-                            <button onclick="handlehot()">truyện xuyên không hot</button>
+                                <button onclick="handlefull()">truyện xuyên không full</button>
+                                <button onclick="handlehot()">truyện xuyên không hot</button>
                             </div>
-                            <div class="lkdjf">
-                            @foreach($data as $dt)
-                            <div class="story-item-no-image">
-                                        <div class="story-item-no-image__name d-flex align-items-center">
-                                            <h3 class="me-1 mb-0 d-flex align-items-center">
+                            <x-story-item :data="$data" />
+                            <div id="storyList">
 
-                                                <svg style="width: 10px; margin-right: 5px;"
-                                                    xmlns="http://www.w3.org/2000/svg" height="1em"
-                                                    viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                                    <path
-                                                        d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
-                                                    </path>
-                                                </svg>
-                                                <img loading="lazy" src="{{$dt->image}}" style="width:15%;border-radius:7px" alt="">
-                                                <a href="/{{$dt->slug}}"
-                                                    class="text-decoration-none text-dark fs-6 hover-title text-one-row story-name">
-                                                    {{$dt->title}}</a>
-                                            
-                                            </h3>
-                                            <span class="badge text-bg-info text-light me-1">New</span>
-
-                                            <span class="badge text-bg-success text-light me-1">{{$dt->trangthai}}</span>
-
-                                            <span class="badge text-bg-danger text-light">Hot</span>
-                                        </div>
-
-                                        <div class="story-item-no-image__categories ms-2 d-none d-lg-block">
-                                            <p class="mb-0">
-                                                <a href="#"
-                                                    class="hover-title text-decoration-none text-dark category-name">{{$dt->theloai}}</a>
-                                            
-                                            </p>
-                                        </div>
-
-                                        <div class="story-item-no-image__chapters ms-2">
-                                            <a href="#" class="hover-title text-decoration-none text-info">{{$dt->chapter}}</a>
-                                        </div>
-
-
-                                    </div>
-                                    @endforeach
-                                    </div>
-                                    <div id="storyList">
-   
-</div>
+                            </div>
                         </div>
-    </div>
                     </div>
-                   
-    
+                </div>
 
- 
+
+
+
 
                 <div class="col-12 col-md-4 col-lg-3 sticky-md-top">
 
 
                     <div class="row">
-                  
-                        <div  class="col-12" style="margin-top: 20px">
-            <div class="section-list-category bg-light p-2 rounded card-custom">
-                <div class="head-title-global mb-2">
-                   
-                </div>
-                <div class="row">
-               <div class="overviewtienhiep">
-              <p>Xuyên không là thể loại tiểu thuyết mà trong đó các nhân vật chính vì một lý do nào đó đã đi đến một khoảng thời gian , không gian , một thời đại khác so với thời đại mà họ đang sinh sống. Có 2 thể loại xuyên không: 
-Loại 1 : Khi xuyên qua chỉ có linh hồn xuyên đến 1 thời đại khác. 
-Loại 2 : Cả thể xác và linh hồn đều xuyên qua đến 1 thời đại khác. 
- Nơi xảy ra ? Có thể là hiện đại xuyên về cổ đại , từ cổ đại xuyên về hiện đại ,… 
-Nhân vật chính sau khi xuyên qua thành: + Thành nữ vương , hoàng hậu , công chúa , tiểu thư ,…. ( nói chung là tầng lớp quý tộc ) + Thành nô tỳ , nữ bộc , ngốc tử , vô diệm ,….. + Xuyên qua thành người bình thường không có gì nổi bật.</p>
+
+                        <div class="col-12" style="margin-top: 20px">
+                            <div class="section-list-category bg-light p-2 rounded card-custom">
+                                <div class="head-title-global mb-2">
+
+                                </div>
+                                <div class="row">
+                                    <div class="overviewtienhiep">
+                                        <p>Xuyên không là thể loại tiểu thuyết mà trong đó các nhân vật chính vì một lý do nào đó đã đi đến một khoảng thời gian , không gian , một thời đại khác so với thời đại mà họ đang sinh sống. Có 2 thể loại xuyên không:
+                                            Loại 1 : Khi xuyên qua chỉ có linh hồn xuyên đến 1 thời đại khác.
+                                            Loại 2 : Cả thể xác và linh hồn đều xuyên qua đến 1 thời đại khác.
+                                            Nơi xảy ra ? Có thể là hiện đại xuyên về cổ đại , từ cổ đại xuyên về hiện đại ,…
+                                            Nhân vật chính sau khi xuyên qua thành: + Thành nữ vương , hoàng hậu , công chúa , tiểu thư ,…. ( nói chung là tầng lớp quý tộc ) + Thành nô tỳ , nữ bộc , ngốc tử , vô diệm ,….. + Xuyên qua thành người bình thường không có gì nổi bật.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                </div>
-                </div>
 
 
                     <div class="row" style="margin-top: 10px">
@@ -131,33 +90,33 @@ Nhân vật chính sau khi xuyên qua thành: + Thành nữ vương , hoàng h�
                                             <span href="#" class="d-block text-decoration-none text-dark fs-4"
                                                 title="Truyện đang đọc">Thể loại truyện</span>
                                         </h2>
-                                    
+
                                     </div>
                                 </div>
                                 <div class="row">
-                                   
-                                <ul class="list-category">
+
+                                    <ul class="list-category">
                                         @foreach($dmcategory as $dmct)
-                                       
+
                                         <li class="">
                                             <a href="/the-loai/{{ $dmct->namecategory }}" class="text-decoration-none text-dark hover-title">{{ $dmct->namecategory }}</a>
                                         </li>
-                                       @endforeach
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-              
 
-        <div class="section-stories-full mb-3 mt-3">
-            <div class="container">
-              
 
-             
-            </div>
-        </div>
+                    <div class="section-stories-full mb-3 mt-3">
+                        <div class="container">
+
+
+
+                        </div>
+                    </div>
     </main>
 
     @include('footer')
@@ -189,23 +148,17 @@ Nhân vật chính sau khi xuyên qua thành: + Thành nữ vương , hoàng h�
 
 </body>
 <script>
-   
-        
+    function hideStoryList() {
+        $('#storyList').hide();
+    }
 
+    function displayStories(data) {
+        // Clear existing stories
+        $('#storyList').empty();
 
-
-
-
-function hideStoryList() {
-    $('#storyList').hide();
-}
-function displayStories(data) {
-    // Clear existing stories
-    $('#storyList').empty();
-
-    // Render new stories
-    $.each(data, function(index, dt) {
-        $('#storyList').append(`
+        // Render new stories
+        $.each(data, function(index, dt) {
+            $('#storyList').append(`
             <div class="story-item-no-image">
                 <div class="story-item-no-image__name d-flex align-items-center">
                     <h3 class="me-1 mb-0 d-flex align-items-center">
@@ -235,63 +188,11 @@ function displayStories(data) {
                 </div>
             </div>
         `);
-    });
-    $('#storyList').show();
-}
-var isContentHidden = false;
-
-function handlefull() {
-    isContentHidden = true;
-    $.ajax({
-        url: '/truyen-tien-hiep-full',
-        type: 'GET',
-        success: function(response) {
-            console.log(response);
-            // Hiển thị dữ liệu sản phẩm đã lọc
-            displayStories(response);
-            toggleContentVisibility();
-        },
-        error: function(xhr, status, error) {
-            console.log('AJAX request failed:', status, error);
-            console.log(xhr.responseText);
-        }
-    });
-}
-
-function handlehot() {
-    isContentHidden = true;
-    console.log('Button clicked 2');
-    hideStoryList();
-    $.ajax({
-        url: '/truyen-tien-hiep-hot',
-        type: 'GET',
-        success: function(response) {
-            console.log(response);
-            // Hiển thị dữ liệu truyện đã lọc
-            displayStories(response);
-            toggleContentVisibility();
-           
-        },
-        error: function(xhr, status, error) {
-            console.log('AJAX request failed:', status, error);
-            console.log(xhr.responseText);
-        }
-    });
-}
-
-function toggleContentVisibility() {
-    if (isContentHidden) {
-        // If isContentHidden is true, hide the content
-        $('.lkdjf').hide();
-    } else {
-        // If isContentHidden is false, show the content
-        $('.lkdjf').show();
+        });
+        $('#storyList').show();
     }
-}
-
-
-
-
-    </script>
+    
+</script>
+    <script src="{{url('./assets/js/toggleContentVisibility.js')}}"></script>
 
 </html>

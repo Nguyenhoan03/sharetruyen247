@@ -141,7 +141,6 @@
                                             title="Truyện Mới">Truyện Mới</a>
                                     </h2>
                                 </div>
-
                             </div>
                         </div>
 
@@ -188,12 +187,8 @@
                                             <a href="{{ $tm->slug ? route('story.chapter', ['slug' => $tm->slug, 'chapter' => $tm->chapter]) : '#' }}" 
                                                 class="hover-title text-decoration-none text-info">{{$tm->chapter}}</a>
                                         </div>
-
-
                                     </div>
                                     @endforeach
-                                  
-                            
                                 </div>
                                
                             </div>
