@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Repositories\basecategoryInterface;
-use App\services\UserService;
-use App\services\chapterService;
+use App\Services\UserService;
+use App\Services\ChapterService;
 use Illuminate\Support\Facades\DB as DB;
 use Illuminate\Support\Facades\Auth;
 
 use Mail;
 
-class chaptercontroller extends Controller
+class ChapterController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -1,5 +1,5 @@
 <?php
-namespace App\services;
+namespace App\Services;
 use Illuminate\Support\Facades\DB;
   class danhmucService{
     public function data_pageCategory($title_category)

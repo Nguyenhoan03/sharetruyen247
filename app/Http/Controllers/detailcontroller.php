@@ -7,7 +7,7 @@ use App\Models\chapter;
 use App\Repositories\basecategoryInterface;
 use Illuminate\Support\Facades\DB as DB;;
 
-class detailcontroller extends Controller
+class DetailController extends Controller
 {
     /**
      * Display a listing of the resource.

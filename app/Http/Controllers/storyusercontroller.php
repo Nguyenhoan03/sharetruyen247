@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\services\storyService;
-use App\services\chapterService;
-use App\services\billingService;
-use App\services\UserService;
+use App\Services\StoryService;
+use App\Services\ChapterService;
+use App\Services\BillingService;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Session;
 
 class StoryUserController extends Controller

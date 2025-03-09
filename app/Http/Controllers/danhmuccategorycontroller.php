@@ -1,19 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB as DB;
 use App\Repositories\basecategoryInterface;
-use App\services\danhmucService;
+use App\Services\DanhmucService;
 
-class danhmuccategorycontroller extends Controller
+class DanhmuccategoryController extends Controller
 {
 
     protected $category;
     protected $dm_Service;
 
-    public function __construct(basecategoryInterface $basecategory, danhmucService $danhmucService){
+    public function __construct(basecategoryInterface $basecategory, DanhmucService $danhmucService){
         $this->category = $basecategory;
         $this->dm_Service = $danhmucService;
     }

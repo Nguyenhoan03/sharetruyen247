@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\services\adminService;
-use Illuminate\Support\Facades\Auth;
-class paymentcontroller extends Controller
+use App\Services\AdminService;
+class PaymentController extends Controller
 {
     protected $adminService;
 
-    public function __construct(adminService $adminService)
+    public function __construct(AdminService $adminService)
     {
         $this->adminService = $adminService;
     }

@@ -1,16 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use Goutte;
 use App\Models\product;
 use App\Models\detail_product;
 use App\Models\chapter;
 use Illuminate\Support\Str;
 
-class crawlcontroller extends Controller
+class CrawlController extends Controller
 {
-   
     public function scrapeMainPage($category)
     {
         $url = "https://doctruyen.pro/the-loai/$category";

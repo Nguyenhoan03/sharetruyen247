@@ -5,12 +5,12 @@ use App\Http\Controllers\{
     AdminController,
     HomeController,
     ChatController,
-    crawlcontroller,
+    CrawlController,
     StoryUserController,
-    danhmuccategorycontroller,
-    detailcontroller,
-    chaptercontroller,
-    paymentcontroller
+    DanhmuccategoryController,
+    DetailController,
+    ChapterController,
+    PaymentController
 };
 
 
@@ -27,7 +27,7 @@ Route::get('/sitemap', function() {
 
 
 Route::group(['prefix' => 'crawler'], function () {
-    Route::get('/{category}', [crawlcontroller::class, 'scrapeMainPage'])
+    Route::get('/{category}', [CrawlController::class, 'scrapeMainPage'])
         ->where('category', implode('|', [
             'tien-hiep', 'ngon-tinh', 'quan-truong', 'khoa-huyen',
             'huyen-huyen', 'di-nang', 'kiem-hiep', 'dam-my',
@@ -99,7 +99,7 @@ Route::group(['middleware' => 'checklogin'], function () {
 });
 
 
-Route::controller(danhmuccategorycontroller::class)->group(function () {
+Route::controller(DanhmuccategoryController::class)->group(function () {
     // Full Stories Routes
     Route::get('/truyen-tien-hiep-full', 'truyentienhiepfull');
     Route::get('/truyen-kiem-hiep-full', 'truyenkiemhiepfull');
@@ -134,11 +134,11 @@ Route::controller(danhmuccategorycontroller::class)->group(function () {
 });
 
 
-Route::post('/payment/vnpay', [paymentcontroller::class, 'createPayment'])->name('payment.vnpay');
-Route::get('/payment/vnpay-return', [paymentcontroller::class, 'paymentReturn'])->name('payment.vnpay.return');
-Route::post('/grant_linhthach', [chaptercontroller::class, 'grant_linhthach']);
+Route::post('/payment/vnpay', [PaymentController::class, 'createPayment'])->name('payment.vnpay');
+Route::get('/payment/vnpay-return', [PaymentController::class, 'paymentReturn'])->name('payment.vnpay.return');
+Route::post('/grant_linhthach', [ChapterController::class, 'grant_linhthach']);
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/search', [HomeController::class, 'search']);
-Route::get('/{slug}', [detailcontroller::class, 'index'])->name('story.detail');
-Route::get('/{slug}/{chapter}', [chaptercontroller::class, 'index'])->name('story.chapter');
+Route::get('/{slug}', [DetailController::class, 'index'])->name('story.detail');
+Route::get('/{slug}/{chapter}', [ChapterController::class, 'index'])->name('story.chapter');
 
