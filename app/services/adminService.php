@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
 use App\Jobs\SendMailJob;
-class adminService
+class AdminService
 {
     public function getLinhThachHistory()
     {

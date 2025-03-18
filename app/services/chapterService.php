@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Services;
+use Illuminate\Support\Str;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Jobs\SendMailJob;
-class chapterService
+class ChapterService
 {
     public function getChapterData($title, $chapter)
     {
@@ -120,11 +121,16 @@ class chapterService
 
     
 public function createChapter($request,$title){
+    $titleSlug = Str::slug($title, '-');
+    $chapterSlug = Str::slug($request->chapter_name, '-');
+
     return DB::table('chapter')->insert([
-     'title' => $title,
-     'chapter' => 'chương' . $request->chapter_number . ':' .$request->chapter_name,
-     'content' => $request->chapter_content,
-   ]);
+        'title' => $title,
+        'title_slug' => $titleSlug, 
+        'chapter' => 'Chương ' . $request->chapter_number . ': ' . $request->chapter_name,
+        'chapter_slug' => 'chuong-' . $request->chapter_number . '-' . $chapterSlug, 
+        'content' => $request->chapter_content,
+    ]);
  }
  public function getChaptersByTitle ($title,$userId){
     

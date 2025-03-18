@@ -3,10 +3,9 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
-class storyService
+class StoryService
 {
     public function getUserStories($userId)
     {

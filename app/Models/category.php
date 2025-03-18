@@ -15,6 +15,6 @@ class category extends Model
     protected $guarded = [];
     protected $fillable  = [
       'namecategory',
-   
+  
     ];
 }

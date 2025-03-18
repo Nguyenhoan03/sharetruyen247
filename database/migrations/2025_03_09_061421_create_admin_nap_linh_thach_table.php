@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('admin_nap_linh_thach')) {
         Schema::create('admin_nap_linh_thach', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->integer('solinhthach_nap')->nullable();
             $table->timestamp('thoigian')->nullable();
         });
+    }
     }
 
     /**

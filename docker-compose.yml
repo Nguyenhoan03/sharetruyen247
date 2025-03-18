@@ -34,10 +34,10 @@ services:
     container_name: laravel_db
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: Hoanphe1@
       MYSQL_DATABASE: chuyenn7_webtruyen
-      MYSQL_USER: root
-      MYSQL_PASSWORD: ""
+      MYSQL_USER: nmh03
+      MYSQL_PASSWORD: "Hoanphe1@"
     ports:
       - "3306:3306"
     networks:

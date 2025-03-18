@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
 use App\Jobs\SendMailJob;
-class billingService
+class BillingService
 {
    public function getBankInformation($userId)
    {

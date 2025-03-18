@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
 
-class categoryService
+class CategoryService
 {
     public function getAllCategories()
     {
