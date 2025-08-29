@@ -14,6 +14,7 @@ class ExampleTest extends TestCase
      */
     public function test_the_application_returns_a_successful_response()
     {
+        dd("test 2");
         $response = $this->get('/');
 
         $response->assertStatus(200);
